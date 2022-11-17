@@ -14,37 +14,41 @@ struct DetailView: View {
     
     var body: some View {
         ZStack {
-            VStack(alignment: .leading) {
-                Image("placeholder")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height/4, alignment: .center)
-                    .clipped()
-                
-                Group {
-                    Text(article.title)
-                        .font(.title)
+            ScrollView {
+                ZStack {
+                    VStack(alignment: .leading) {
+                        Text(article.title)
+                            .font(.title)
+                        
+                        Text(article.formattedDate)
+                            .foregroundColor(.secondary)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .padding(.bottom)
+                        
+                        Text(article.description)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        Text(article.author)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.vertical)
+                    }
+                    .padding(.horizontal)
+                    .padding(.top, 150)
                     
-                    Text(article.formattedDate)
-                        .foregroundColor(.secondary)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                        .padding(.bottom)
+                    GeometryReader { reader in
+                        VStack {
+                            Image("placeholder")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: reader.size.width, height: self.calculateHederHeight(minHeight: 100, maxHeight: 150, verticalOffset: reader.frame(in: .global).origin.y), alignment: .center)
+                                .clipped()
+                                .offset(y: reader.frame(in: .global).origin.y < 0 ? abs(reader.frame(in: .global).origin.y) : -reader.frame(in: .global).origin.y)
+                            Spacer()
+                        }
+                        
+                    }
                 }
-                .padding(.horizontal)
-                
-                ScrollView {
-                    Text(article.description)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    Text(article.author)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.vertical)
-                }
-                .padding(.horizontal)
-                
-                Spacer()
             }
-            .ignoresSafeArea()
             
             Button {
                 dismiss.wrappedValue.dismiss()
@@ -52,16 +56,31 @@ struct DetailView: View {
                 Image(systemName: "x.circle.fill")
                     .resizable()
                     .frame(width: 30, height: 30)
-                    .foregroundColor(.red)
+                    .foregroundColor(.primary)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
             .padding()
         }
     }
+    
+    func calculateHederHeight(minHeight: CGFloat, maxHeight: CGFloat, verticalOffset: CGFloat) -> CGFloat {
+        /// The verticalOffset is a negative number while scrolling up
+    
+        if maxHeight + verticalOffset < minHeight {
+            /// The user is scrolling up, if it reaches the minHeight it stops
+            return minHeight
+        } else if maxHeight + verticalOffset > maxHeight {
+            /// It dampens the offset the further down the user goes
+            return maxHeight + (verticalOffset * 0.5)
+        }
+    
+        /// The user is scrolling down
+        return maxHeight + verticalOffset
+    }
 }
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(article: .constant(News(id: 0, title: "Lorem", description: "Ipsum", release_date: "12/02/12", author: "aaa", image: "")))
+        DetailView(article: .constant(News(id: 0, title: "Lorem", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laborLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laborLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laborLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laborLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laborLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laborLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laborLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labort laborLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laborLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laborLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laborLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laborLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labort laborLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laborLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laborLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laborLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laborLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labor", release_date: "12/02/12", author: "aaa", image: "")))
     }
 }
