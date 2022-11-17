@@ -16,6 +16,9 @@
 		6F0926D12926383C005B8931 /* NewsAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926D02926383C005B8931 /* NewsAppUITestsLaunchTests.swift */; };
 		6F0926DE29264266005B8931 /* NewsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926DD29264266005B8931 /* NewsCard.swift */; };
 		6F0926E0292642D7005B8931 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926DF292642D7005B8931 /* DetailView.swift */; };
+		6F0926E229265079005B8931 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926E129265079005B8931 /* NetworkManager.swift */; };
+		6F0926E42926509C005B8931 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926E32926509C005B8931 /* DataStore.swift */; };
+		6F0926E6292650BA005B8931 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926E5292650BA005B8931 /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +51,9 @@
 		6F0926D02926383C005B8931 /* NewsAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		6F0926DD29264266005B8931 /* NewsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCard.swift; sourceTree = "<group>"; };
 		6F0926DF292642D7005B8931 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		6F0926E129265079005B8931 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		6F0926E32926509C005B8931 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		6F0926E5292650BA005B8931 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +105,9 @@
 			isa = PBXGroup;
 			children = (
 				6F0926B32926383B005B8931 /* NewsAppApp.swift */,
-				6F0926B52926383B005B8931 /* ContentView.swift */,
-				6F0926DF292642D7005B8931 /* DetailView.swift */,
-				6F0926DD29264266005B8931 /* NewsCard.swift */,
+				6F0926E7292650BD005B8931 /* Model */,
+				6F0926E9292650EB005B8931 /* ViewModel */,
+				6F0926E8292650CB005B8931 /* Views */,
 				6F0926B72926383C005B8931 /* Assets.xcassets */,
 				6F0926B92926383C005B8931 /* Preview Content */,
 			);
@@ -131,6 +137,33 @@
 				6F0926D02926383C005B8931 /* NewsAppUITestsLaunchTests.swift */,
 			);
 			path = NewsAppUITests;
+			sourceTree = "<group>";
+		};
+		6F0926E7292650BD005B8931 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6F0926E5292650BA005B8931 /* Model.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6F0926E8292650CB005B8931 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6F0926B52926383B005B8931 /* ContentView.swift */,
+				6F0926DF292642D7005B8931 /* DetailView.swift */,
+				6F0926DD29264266005B8931 /* NewsCard.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		6F0926E9292650EB005B8931 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6F0926E129265079005B8931 /* NetworkManager.swift */,
+				6F0926E32926509C005B8931 /* DataStore.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,8 +296,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F0926E6292650BA005B8931 /* Model.swift in Sources */,
 				6F0926DE29264266005B8931 /* NewsCard.swift in Sources */,
+				6F0926E42926509C005B8931 /* DataStore.swift in Sources */,
 				6F0926E0292642D7005B8931 /* DetailView.swift in Sources */,
+				6F0926E229265079005B8931 /* NetworkManager.swift in Sources */,
 				6F0926B62926383B005B8931 /* ContentView.swift in Sources */,
 				6F0926B42926383B005B8931 /* NewsAppApp.swift in Sources */,
 			);
