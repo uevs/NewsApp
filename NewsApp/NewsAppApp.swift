@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct NewsAppApp: App {
+    @StateObject var data: DataStore = DataStore()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(data)
         }
     }
 }

@@ -8,18 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
-    var news = [1,2,3,4,5,6,7,8,9]
+    @EnvironmentObject var data: DataStore
+        
     var body: some View {
         ScrollView {
-            ForEach(news, id: \.self) { _ in
-                NewsCard()
+            ForEach(data.news) { article in
+                NewsCard(article: article)
             }
         }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//    }
+//}

@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct DetailView: View {
+    @Environment(\.presentationMode) var dismiss
+    
+    @Binding var article: News
+    
     var body: some View {
         ZStack {
             VStack(alignment: .leading) {
@@ -15,15 +19,14 @@ struct DetailView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height/4)
-                    .ignoresSafeArea()
                     .padding(.bottom)
                 
                 Group {
-                    Text("Realigned multimedia framework")
+                    Text(article.title)
                         .font(.title)
                         .padding(.top)
                     
-                    Text("Wed, Jul, 20")
+                    Text(article.formattedDate)
                         .foregroundColor(.secondary)
                         .frame(maxWidth: .infinity, alignment: .trailing)
                         .padding(.bottom)
@@ -31,10 +34,10 @@ struct DetailView: View {
                 .padding(.horizontal)
                 
                 ScrollView {
-                    Text("nisl aenean lectus pellentesque eget nunc donec quis orci eget orci vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu interdum eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in felis eu sapien cursus vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem vitae mattis nibh ligula")
+                    Text(article.description)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    Text("Author")
+                    Text(article.author)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.vertical)
                 }
@@ -43,7 +46,7 @@ struct DetailView: View {
                 Spacer()
             }
             Button {
-                //
+                dismiss.wrappedValue.dismiss()
             } label: {
                 Image(systemName: "x.circle.fill")
                     .resizable()
@@ -56,8 +59,8 @@ struct DetailView: View {
     }
 }
 
-struct DetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailView()
-    }
-}
+//struct DetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DetailView()
+//    }
+//}
