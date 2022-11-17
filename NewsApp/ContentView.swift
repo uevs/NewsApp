@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    var news = [1,2,3,4,5,6,7,8,9]
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        ScrollView {
+            ForEach(news, id: \.self) { _ in
+                NewsCard()
+            }
         }
-        .padding()
     }
 }
 
