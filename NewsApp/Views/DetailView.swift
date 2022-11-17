@@ -17,13 +17,6 @@ struct DetailView: View {
             ScrollView {
                 ZStack {
                     VStack(alignment: .leading) {
-                        Text(article.title)
-                            .font(.title)
-                        
-                        Text(article.formattedDate)
-                            .foregroundColor(.secondary)
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                            .padding(.bottom)
                         
                         Text(article.description)
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -33,16 +26,36 @@ struct DetailView: View {
                             .padding(.vertical)
                     }
                     .padding(.horizontal)
-                    .padding(.top, 150)
+                    .padding(.top, 200)
                     
                     GeometryReader { reader in
-                        VStack {
+                        VStack(spacing: 0) {
                             Image("placeholder")
                                 .resizable()
                                 .scaledToFill()
                                 .frame(width: reader.size.width, height: self.calculateHederHeight(minHeight: 100, maxHeight: 150, verticalOffset: reader.frame(in: .global).origin.y), alignment: .center)
                                 .clipped()
                                 .offset(y: reader.frame(in: .global).origin.y < 0 ? abs(reader.frame(in: .global).origin.y) : -reader.frame(in: .global).origin.y)
+                            
+                            ZStack(alignment:.top) {
+                                Rectangle()
+                                    .fill(LinearGradient(colors: [.white,.white,.clear], startPoint: .top, endPoint: .bottom))
+                                    .frame(height: 90)
+                                
+                                VStack {
+                                    Text(article.title)
+                                        .font(.title)
+                                        .frame(maxWidth: .infinity, alignment: .topLeading)
+                                        .padding(.top, 5)
+                                    
+                                    Text(article.formattedDate)
+                                        .foregroundColor(.secondary)
+                                        .frame(maxWidth: .infinity, alignment: .topTrailing)
+                                }
+                                .padding(.horizontal)
+                            }
+                            .offset(y: reader.frame(in: .global).origin.y < 0 ? abs(reader.frame(in: .global).origin.y) : -reader.frame(in: .global).origin.y)
+                            
                             Spacer()
                         }
                         
@@ -65,7 +78,7 @@ struct DetailView: View {
     
     func calculateHederHeight(minHeight: CGFloat, maxHeight: CGFloat, verticalOffset: CGFloat) -> CGFloat {
         /// The verticalOffset is a negative number while scrolling up
-    
+        
         if maxHeight + verticalOffset < minHeight {
             /// The user is scrolling up, if it reaches the minHeight it stops
             return minHeight
@@ -73,7 +86,7 @@ struct DetailView: View {
             /// It dampens the offset the further down the user goes
             return maxHeight + (verticalOffset * 0.5)
         }
-    
+        
         /// The user is scrolling down
         return maxHeight + verticalOffset
     }
