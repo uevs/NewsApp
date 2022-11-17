@@ -19,7 +19,7 @@ struct NewsCard: View {
                 .foregroundColor(.red)
             
             HStack(alignment: .top) {
-                Image(systemName: "wifi.exclamationmark")
+                Image("placeholder")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .clipShape(Circle())

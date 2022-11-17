@@ -15,16 +15,15 @@ struct DetailView: View {
     var body: some View {
         ZStack {
             VStack(alignment: .leading) {
-                Image(systemName: "square.fill")
+                Image("placeholder")
                     .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height/4)
-                    .padding(.bottom)
+                    .scaledToFill()
+                    .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height/4, alignment: .center)
+                    .clipped()
                 
                 Group {
                     Text(article.title)
                         .font(.title)
-                        .padding(.top)
                     
                     Text(article.formattedDate)
                         .foregroundColor(.secondary)
@@ -45,6 +44,8 @@ struct DetailView: View {
                 
                 Spacer()
             }
+            .ignoresSafeArea()
+            
             Button {
                 dismiss.wrappedValue.dismiss()
             } label: {
@@ -59,8 +60,8 @@ struct DetailView: View {
     }
 }
 
-//struct DetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DetailView()
-//    }
-//}
+struct DetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        DetailView(article: .constant(News(id: 0, title: "Lorem", description: "Ipsum", release_date: "12/02/12", author: "aaa", image: "")))
+    }
+}
