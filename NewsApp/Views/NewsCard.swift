@@ -20,7 +20,7 @@ struct NewsCard: View {
                 .foregroundColor(.red)
             
             HStack(alignment: .top) {
-                AsyncImageView(url: article.imageURL, placeholder: {
+                AsyncImageView(url: article.imageURL, id: article.id, placeholder: {
                     Image(systemName: "square")
                 })
 

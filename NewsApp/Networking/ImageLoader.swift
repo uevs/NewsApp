@@ -16,12 +16,14 @@ class ImageLoader: ObservableObject {
 //    private(set) var isLoading = false
     
     private let url: URL
+    private let id: Int
     private var cancellable: AnyCancellable?
     
 //    private static let imageProcessingQueue = DispatchQueue(label: "image-processing")
     
-    init(url: URL) {
+    init(url: URL, id: Int) {
         self.url = url
+        self.id = id
         load()
     }
     
@@ -34,6 +36,13 @@ class ImageLoader: ObservableObject {
         if let cachedImage = ImageCache.shared.cache.object(forKey: self.url as NSURL) {
             print("found cached image")
             self.image = cachedImage
+            return
+        }
+        
+        if let storedImage = ImagesStorage.shared.getImage(imageName: String(id)) {
+            print("found stored image")
+            self.image = storedImage
+            cacheImage(storedImage)
             return
         }
         
@@ -50,11 +59,18 @@ class ImageLoader: ObservableObject {
                     print(error.localizedDescription)
                 }
             }, receiveValue: { [weak self] (image) in
+                self?.saveImage(image)
                 self?.cacheImage(image)
                 self?.image = image
             })
-        
     }
+    
+    private func saveImage(_ image: UIImage?) {
+        if image != nil {
+            ImagesStorage.shared.saveImage(image: image!, imageName: String(id))
+        }
+    }
+    
     
     private func cacheImage(_ image: UIImage?) {
         if image != nil {

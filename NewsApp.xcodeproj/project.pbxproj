@@ -23,7 +23,7 @@
 		6F0926F1292A404D005B8931 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926F0292A404D005B8931 /* AsyncImageView.swift */; };
 		6F0926F3292A4E9D005B8931 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926F2292A4E9D005B8931 /* ImageLoader.swift */; };
 		6F0926F5292A9DCA005B8931 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926F4292A9DCA005B8931 /* ImageCache.swift */; };
-		6F0926F8292AA501005B8931 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926F7292AA501005B8931 /* FileManager.swift */; };
+		6F0926F8292AA501005B8931 /* ImagesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926F7292AA501005B8931 /* ImagesStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,7 +63,7 @@
 		6F0926F0292A404D005B8931 /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
 		6F0926F2292A4E9D005B8931 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		6F0926F4292A9DCA005B8931 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
-		6F0926F7292AA501005B8931 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		6F0926F7292AA501005B8931 /* ImagesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,7 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				6F0926E129265079005B8931 /* NetworkManager.swift */,
-				6F0926F7292AA501005B8931 /* FileManager.swift */,
+				6F0926F7292AA501005B8931 /* ImagesStorage.swift */,
 				6F0926F2292A4E9D005B8931 /* ImageLoader.swift */,
 				6F0926F4292A9DCA005B8931 /* ImageCache.swift */,
 			);
@@ -330,7 +330,7 @@
 				6F0926F5292A9DCA005B8931 /* ImageCache.swift in Sources */,
 				6F0926E6292650BA005B8931 /* Model.swift in Sources */,
 				6F0926DE29264266005B8931 /* NewsCard.swift in Sources */,
-				6F0926F8292AA501005B8931 /* FileManager.swift in Sources */,
+				6F0926F8292AA501005B8931 /* ImagesStorage.swift in Sources */,
 				6F0926F3292A4E9D005B8931 /* ImageLoader.swift in Sources */,
 				6F0926E42926509C005B8931 /* DataStore.swift in Sources */,
 				6F0926E0292642D7005B8931 /* DetailView.swift in Sources */,
