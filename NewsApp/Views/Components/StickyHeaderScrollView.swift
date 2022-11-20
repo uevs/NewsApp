@@ -9,27 +9,36 @@ import SwiftUI
 
 struct StickyHeaderScrollView<Image: View, Title: View, Contents: View>: View {
     
-    let image: Image
-    let title: Title
-    let contents: Contents
+    private let image: Image
+    private let title: Title
+    private let contents: Contents
     
-    var padding: CGFloat {
+    private var maxHeight: CGFloat
+    private var minHeight: CGFloat {
+        maxHeight/1.4
+    }
+    
+    private var padding: CGFloat {
         if title is EmptyView {
-            return 120
+            return maxHeight - 30
         } else {
-            return 220
+            return maxHeight + 70
         }
     }
     
-    init(@ViewBuilder image: () -> Image, @ViewBuilder title: () -> Title, @ViewBuilder contents: () -> Contents) {
+    
+    init(@ViewBuilder image: () -> Image, @ViewBuilder title: () -> Title, @ViewBuilder contents: () -> Contents, maxHeight: CGFloat = 200) {
         self.image = image()
         self.title = title()
         self.contents = contents()
+        self.maxHeight = maxHeight
     }
     
-    init(image: () -> Image, contents: () -> Contents) where Title == EmptyView {
-        self.init(image: image, title: {EmptyView()}, contents: contents)
+    
+    init(image: () -> Image, contents: () -> Contents, maxHeight: CGFloat = 200) where Title == EmptyView {
+        self.init(image: image, title: {EmptyView()}, contents: contents, maxHeight: maxHeight)
     }
+    
     
     var body: some View {
         ScrollView {
@@ -43,7 +52,7 @@ struct StickyHeaderScrollView<Image: View, Title: View, Contents: View>: View {
                 GeometryReader { reader in
                     VStack(spacing: 0) {
                         image
-                            .frame(width: reader.size.width, height: self.calculateHederHeight(minHeight: 100, maxHeight: 150, verticalOffset: reader.frame(in: .global).origin.y), alignment: .center)
+                            .frame(width: reader.size.width, height: self.calculateHederHeight(minHeight: self.minHeight, maxHeight: self.maxHeight, verticalOffset: reader.frame(in: .global).origin.y), alignment: .center)
                             .clipped()
                             .offset(y: reader.frame(in: .global).origin.y < 0 ? abs(reader.frame(in: .global).origin.y) : -reader.frame(in: .global).origin.y)
                         
@@ -57,7 +66,8 @@ struct StickyHeaderScrollView<Image: View, Title: View, Contents: View>: View {
         }
     }
     
-    func calculateHederHeight(minHeight: CGFloat, maxHeight: CGFloat, verticalOffset: CGFloat) -> CGFloat {
+    
+    private func calculateHederHeight(minHeight: CGFloat, maxHeight: CGFloat, verticalOffset: CGFloat) -> CGFloat {
         /// The verticalOffset is a negative number while scrolling up
         
         if maxHeight + verticalOffset < minHeight {

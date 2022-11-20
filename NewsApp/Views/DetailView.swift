@@ -14,11 +14,11 @@ struct DetailView: View {
     
     var body: some View {
         ZStack {
-            StickyHeaderScrollView {
+            StickyHeaderScrollView(image: {
                 Image("placeholder")
                     .resizable()
                     .scaledToFill()
-            } title: {
+            }, title: {
                 ZStack(alignment:.top) {
                     Rectangle()
                         .fill(LinearGradient(colors: [.white,.white,.clear], startPoint: .top, endPoint: .bottom))
@@ -36,7 +36,7 @@ struct DetailView: View {
                     }
                     .padding(.horizontal)
                 }
-            } contents: {
+            }, contents: {
                 VStack(alignment: .leading) {
                     Text(article.description)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -46,7 +46,7 @@ struct DetailView: View {
                         .padding(.vertical)
                 }
                 .padding(.horizontal)
-            }
+            }, maxHeight: 250)
             
             Button {
                 dismiss.wrappedValue.dismiss()

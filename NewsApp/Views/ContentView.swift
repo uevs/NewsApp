@@ -12,17 +12,17 @@ struct ContentView: View {
     
     var body: some View {
         
-        StickyHeaderScrollView {
+        StickyHeaderScrollView(image: {
             Image("placeholder")
                 .resizable()
                 .scaledToFill()
-        } contents: {
+        }, contents: {
             LazyVStack {
                 ForEach(data.news) { article in
                     NewsCard(article: article)
                 }
             }
-        }
+        }, maxHeight: 150)
     }
 }
 
