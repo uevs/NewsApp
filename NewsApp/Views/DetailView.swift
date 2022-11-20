@@ -26,7 +26,7 @@ struct DetailView: View {
                     
                     VStack {
                         Text(article.title)
-                            .font(.title)
+                            .font(.title2)
                             .frame(maxWidth: .infinity, alignment: .topLeading)
                             .padding(.top, 5)
                         

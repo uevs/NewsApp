@@ -40,7 +40,7 @@ class DataStore: ObservableObject {
         getNews()
     }
     
-    func getNews() {
+    private func getNews() {
         NetworkManager.getData(url: newsUrl)
             .decode(type: [News].self, decoder: JSONDecoder())
             .receive(on: DispatchQueue.main)
@@ -52,20 +52,24 @@ class DataStore: ObservableObject {
                     print(error.localizedDescription)
                 }
             } receiveValue: { [weak self] (articles) in
-                if self?.news != articles {
-                    self?.storeNews(articles)
+                let sortedArticles = articles.sorted { first, second in
+                    first.date > second.date
                 }
-                self?.news = articles
+                
+                if self?.news != sortedArticles {
+                    self?.storeNews(sortedArticles)
+                }
+                self?.news = sortedArticles
             }
             .store(in: &cancellables)
     }
     
-    func getStoredNews(_ data: Data) -> [News] {
+    private func getStoredNews(_ data: Data) -> [News] {
         guard let decodedNews = try? JSONDecoder().decode([News].self, from: data) else {return []}
         return decodedNews
     }
     
-    func storeNews(_ news: [News]) {
+    private func storeNews(_ news: [News]) {
         guard let encodedNews = try? JSONEncoder().encode(news) else {return}
         self.userDefaults.set(encodedNews, forKey: "news")
     }

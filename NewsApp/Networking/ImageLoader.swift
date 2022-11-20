@@ -29,7 +29,7 @@ class ImageLoader: ObservableObject {
         cancellable?.cancel()
     }
     
-    func load() {
+    private func load() {
         
         if let cachedImage = ImageCache.shared.cache.object(forKey: self.url as NSURL) {
             print("found cached image")
