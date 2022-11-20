@@ -11,11 +11,7 @@ struct NewsCard: View {
     
     @EnvironmentObject var data: DataStore
     
-    
     @State var article: News
-    
-    @StateObject var imageLoader: ImageLoader
-
     @State var showDetail: Bool = false
     
     var body: some View {
@@ -24,15 +20,9 @@ struct NewsCard: View {
                 .foregroundColor(.red)
             
             HStack(alignment: .top) {
-                if imageLoader.image == nil {
-                    Image(systemName: "exclamationmark.icloud.fill")
-                } else {
-                    Image(uiImage: imageLoader.image!)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .clipShape(Circle())
-                        .frame(width: 50, height: 50)
-                }
+                AsyncImageView(url: article.imageURL, placeholder: {
+                    Image(systemName: "square")
+                })
 
                 
                 VStack(alignment: .leading) {
@@ -56,7 +46,6 @@ struct NewsCard: View {
         .fullScreenCover(isPresented: $showDetail) {
             DetailView(article: $article)
         }
-    
     }
 }
 

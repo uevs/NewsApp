@@ -22,6 +22,7 @@
 		6F0926EF2929B1EB005B8931 /* StickyHeaderScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926EE2929B1EB005B8931 /* StickyHeaderScrollView.swift */; };
 		6F0926F1292A404D005B8931 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926F0292A404D005B8931 /* AsyncImageView.swift */; };
 		6F0926F3292A4E9D005B8931 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926F2292A4E9D005B8931 /* ImageLoader.swift */; };
+		6F0926F5292A9DCA005B8931 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926F4292A9DCA005B8931 /* ImageCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		6F0926EE2929B1EB005B8931 /* StickyHeaderScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyHeaderScrollView.swift; sourceTree = "<group>"; };
 		6F0926F0292A404D005B8931 /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
 		6F0926F2292A4E9D005B8931 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		6F0926F4292A9DCA005B8931 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,7 +162,6 @@
 				6F0926B52926383B005B8931 /* ContentView.swift */,
 				6F0926DF292642D7005B8931 /* DetailView.swift */,
 				6F0926DD29264266005B8931 /* NewsCard.swift */,
-				6F0926F0292A404D005B8931 /* AsyncImageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -169,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				6F0926E129265079005B8931 /* NetworkManager.swift */,
+				6F0926F4292A9DCA005B8931 /* ImageCache.swift */,
 				6F0926F2292A4E9D005B8931 /* ImageLoader.swift */,
 				6F0926E32926509C005B8931 /* DataStore.swift */,
 			);
@@ -178,6 +180,7 @@
 		6F0926ED2929B1C7005B8931 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				6F0926F0292A404D005B8931 /* AsyncImageView.swift */,
 				6F0926EE2929B1EB005B8931 /* StickyHeaderScrollView.swift */,
 			);
 			path = Components;
@@ -313,6 +316,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F0926F5292A9DCA005B8931 /* ImageCache.swift in Sources */,
 				6F0926E6292650BA005B8931 /* Model.swift in Sources */,
 				6F0926DE29264266005B8931 /* NewsCard.swift in Sources */,
 				6F0926F3292A4E9D005B8931 /* ImageLoader.swift in Sources */,

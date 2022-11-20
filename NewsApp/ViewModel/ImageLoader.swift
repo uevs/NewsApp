@@ -13,17 +13,15 @@ class ImageLoader: ObservableObject {
     
     @Published var image: UIImage? = nil
     
-    private(set) var isLoading = false
-
+//    private(set) var isLoading = false
+    
     private let url: URL
-    private var cache: NSCache<NSURL, UIImage>
     private var cancellable: AnyCancellable?
     
-    private static let imageProcessingQueue = DispatchQueue(label: "image-processing") // check
-
-    init(url: URL, cache: NSCache<NSURL, UIImage>) {
+//    private static let imageProcessingQueue = DispatchQueue(label: "image-processing")
+    
+    init(url: URL) {
         self.url = url
-        self.cache = cache
         load()
     }
     
@@ -33,8 +31,10 @@ class ImageLoader: ObservableObject {
     
     func load() {
         
-        if let cachedImage: UIImage = cache.object(forKey: url as NSURL) {
+        if let cachedImage = ImageCache.shared.cache.object(forKey: self.url as NSURL) {
+            print("found cached image")
             self.image = cachedImage
+            return
         }
         
         cancellable = NetworkManager.getData(url: url)
@@ -43,17 +43,24 @@ class ImageLoader: ObservableObject {
             })
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { (completion) in
-                //
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
             }, receiveValue: { [weak self] (image) in
+                self?.cacheImage(image)
                 self?.image = image
-//                self?.cache.setObject(image, forKey: self?.url as NSURL)
             })
         
     }
     
-//    private func cache(_ image: UIImage?) {
-//        image.map {self.cache[url] = $0}
-//    }
+    private func cacheImage(_ image: UIImage?) {
+        if image != nil {
+            ImageCache.shared.cache.setObject(image!, forKey: self.url as NSURL)
+        }
+    }
     
  
 }

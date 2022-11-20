@@ -12,9 +12,10 @@ import Combine
 class DataStore: ObservableObject {
     
     @Published private(set) var news: [News] = []
-    @Published private(set) var imageCache = NSCache<NSURL, UIImage>()
     
-    var cancellables = Set<AnyCancellable>()
+    private var userDefaults = UserDefaults.standard
+    
+    private var cancellables = Set<AnyCancellable>()
     
     private let apiDomain: String = "run.mocky.io"
     private let apiEndPoint: String = "/v3/de42e6d9-2d03-40e2-a426-8953c7c94fb8"
@@ -33,8 +34,9 @@ class DataStore: ObservableObject {
     }()
  
     init() {
-        imageCache.countLimit = 100
-        imageCache.totalCostLimit = 1024 * 1024 * 100
+        if userDefaults.object(forKey: "news") != nil {
+            news = getStoredNews(userDefaults.object(forKey: "news") as! Data)
+        }
         getNews()
     }
     
@@ -50,8 +52,21 @@ class DataStore: ObservableObject {
                     print(error.localizedDescription)
                 }
             } receiveValue: { [weak self] (articles) in
+                if self?.news != articles {
+                    self?.storeNews(articles)
+                }
                 self?.news = articles
             }
             .store(in: &cancellables)
+    }
+    
+    func getStoredNews(_ data: Data) -> [News] {
+        guard let decodedNews = try? JSONDecoder().decode([News].self, from: data) else {return []}
+        return decodedNews
+    }
+    
+    func storeNews(_ news: [News]) {
+        guard let encodedNews = try? JSONEncoder().encode(news) else {return}
+        self.userDefaults.set(encodedNews, forKey: "news")
     }
 }
