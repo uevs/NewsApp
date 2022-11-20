@@ -6,59 +6,32 @@
 //
 
 import Foundation
-import UIKit
+import Combine
 
 
 class NetworkManager {
-        
-    static var shared: NetworkManager = NetworkManager()
-    
-
-    private let userDefaults: UserDefaults = UserDefaults.standard
-    private let decoder: JSONDecoder = JSONDecoder()
     
     private enum DataError: Error {
         case cantDecode;
-        case badResponse(response: URLResponse)
+        case badResponse(response: URLResponse, url: URL)
     }
     
-    @MainActor
-    func setup() {
-        
+    static func getData(url: URL) -> AnyPublisher<Data, Error> {
+        return URLSession.shared.dataTaskPublisher(for: url)
+            .tryMap {
+                try checkResponse(dataTaskOutput: $0, url: url)
+            }
+            .retry(3)
+            .eraseToAnyPublisher()
     }
     
-    func getData(url: URL) async throws -> [News] {
+
+    static func checkResponse(dataTaskOutput: URLSession.DataTaskPublisher.Output, url: URL) throws -> Data {
         
-        let (data, response) = try await URLSession.shared.data(from: url)
-        
-        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-            throw DataError.badResponse(response: response)
+        guard let response = dataTaskOutput.response as? HTTPURLResponse, response.statusCode >= 200 && response.statusCode < 300 else {
+            throw DataError.badResponse(response: dataTaskOutput.response, url: url)
         }
         
-        guard let result = try? decoder.decode([News].self, from: data) else {
-            throw DataError.cantDecode
+        return dataTaskOutput.data
         }
-        
-        return result
-    }
-    
-    func getImage(url: URL) async throws -> UIImage {
-        let (data, response) = try await URLSession.shared.data(from: url)
-        
-        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-            throw DataError.badResponse(response: response)
-        }
-        
-        return UIImage(data: data)!
-    }
-    
-    func updateStoredData() {
-        
-    }
-    
-    func loadImage() {
-        
-    }
-    
-    
 }

@@ -34,7 +34,12 @@ struct News: Decodable, Identifiable {
     }
     
     var imageURL: URL {
-        if let url: URL = URL(string: image) {
+        let cleanedUrlString = String(image.dropFirst(7))
+        var components = URLComponents()
+        components.path = cleanedUrlString
+        components.scheme = "https"
+        
+        if let url: URL = components.url {
             return url
         } else {
             return URL(string: "https://dummyimage.com/600")!

@@ -19,7 +19,7 @@ struct ContentView: View {
         }, contents: {
             LazyVStack {
                 ForEach(data.news) { article in
-                    NewsCard(article: article)
+                    NewsCard(article: article, imageLoader: ImageLoader(url: article.imageURL, cache: data.imageCache))
                 }
             }
         }, maxHeight: 150)

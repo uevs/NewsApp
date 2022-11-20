@@ -20,6 +20,8 @@
 		6F0926E42926509C005B8931 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926E32926509C005B8931 /* DataStore.swift */; };
 		6F0926E6292650BA005B8931 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926E5292650BA005B8931 /* Model.swift */; };
 		6F0926EF2929B1EB005B8931 /* StickyHeaderScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926EE2929B1EB005B8931 /* StickyHeaderScrollView.swift */; };
+		6F0926F1292A404D005B8931 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926F0292A404D005B8931 /* AsyncImageView.swift */; };
+		6F0926F3292A4E9D005B8931 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926F2292A4E9D005B8931 /* ImageLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,8 @@
 		6F0926E32926509C005B8931 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		6F0926E5292650BA005B8931 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		6F0926EE2929B1EB005B8931 /* StickyHeaderScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyHeaderScrollView.swift; sourceTree = "<group>"; };
+		6F0926F0292A404D005B8931 /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
+		6F0926F2292A4E9D005B8931 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +160,7 @@
 				6F0926B52926383B005B8931 /* ContentView.swift */,
 				6F0926DF292642D7005B8931 /* DetailView.swift */,
 				6F0926DD29264266005B8931 /* NewsCard.swift */,
+				6F0926F0292A404D005B8931 /* AsyncImageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -164,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				6F0926E129265079005B8931 /* NetworkManager.swift */,
+				6F0926F2292A4E9D005B8931 /* ImageLoader.swift */,
 				6F0926E32926509C005B8931 /* DataStore.swift */,
 			);
 			path = ViewModel;
@@ -309,11 +315,13 @@
 			files = (
 				6F0926E6292650BA005B8931 /* Model.swift in Sources */,
 				6F0926DE29264266005B8931 /* NewsCard.swift in Sources */,
+				6F0926F3292A4E9D005B8931 /* ImageLoader.swift in Sources */,
 				6F0926E42926509C005B8931 /* DataStore.swift in Sources */,
 				6F0926E0292642D7005B8931 /* DetailView.swift in Sources */,
 				6F0926EF2929B1EB005B8931 /* StickyHeaderScrollView.swift in Sources */,
 				6F0926E229265079005B8931 /* NetworkManager.swift in Sources */,
 				6F0926B62926383B005B8931 /* ContentView.swift in Sources */,
+				6F0926F1292A404D005B8931 /* AsyncImageView.swift in Sources */,
 				6F0926B42926383B005B8931 /* NewsAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

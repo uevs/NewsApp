@@ -9,8 +9,13 @@ import SwiftUI
 
 struct NewsCard: View {
     
+    @EnvironmentObject var data: DataStore
+    
+    
     @State var article: News
     
+    @StateObject var imageLoader: ImageLoader
+
     @State var showDetail: Bool = false
     
     var body: some View {
@@ -19,11 +24,16 @@ struct NewsCard: View {
                 .foregroundColor(.red)
             
             HStack(alignment: .top) {
-                Image("placeholder")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .clipShape(Circle())
-                    .frame(width: 50, height: 50)
+                if imageLoader.image == nil {
+                    Image(systemName: "exclamationmark.icloud.fill")
+                } else {
+                    Image(uiImage: imageLoader.image!)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .clipShape(Circle())
+                        .frame(width: 50, height: 50)
+                }
+
                 
                 VStack(alignment: .leading) {
                     Text(article.title)
