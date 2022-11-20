@@ -14,53 +14,38 @@ struct DetailView: View {
     
     var body: some View {
         ZStack {
-            ScrollView {
-                ZStack {
-                    VStack(alignment: .leading) {
+            StickyHeaderScrollView {
+                Image("placeholder")
+                    .resizable()
+                    .scaledToFill()
+            } title: {
+                ZStack(alignment:.top) {
+                    Rectangle()
+                        .fill(LinearGradient(colors: [.white,.white,.clear], startPoint: .top, endPoint: .bottom))
+                        .frame(height: 90)
+                    
+                    VStack {
+                        Text(article.title)
+                            .font(.title)
+                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                            .padding(.top, 5)
                         
-                        Text(article.description)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        
-                        Text(article.author)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.vertical)
+                        Text(article.formattedDate)
+                            .foregroundColor(.secondary)
+                            .frame(maxWidth: .infinity, alignment: .topTrailing)
                     }
                     .padding(.horizontal)
-                    .padding(.top, 200)
-                    
-                    GeometryReader { reader in
-                        VStack(spacing: 0) {
-                            Image("placeholder")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: reader.size.width, height: self.calculateHederHeight(minHeight: 100, maxHeight: 150, verticalOffset: reader.frame(in: .global).origin.y), alignment: .center)
-                                .clipped()
-                                .offset(y: reader.frame(in: .global).origin.y < 0 ? abs(reader.frame(in: .global).origin.y) : -reader.frame(in: .global).origin.y)
-                            
-                            ZStack(alignment:.top) {
-                                Rectangle()
-                                    .fill(LinearGradient(colors: [.white,.white,.clear], startPoint: .top, endPoint: .bottom))
-                                    .frame(height: 90)
-                                
-                                VStack {
-                                    Text(article.title)
-                                        .font(.title)
-                                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                                        .padding(.top, 5)
-                                    
-                                    Text(article.formattedDate)
-                                        .foregroundColor(.secondary)
-                                        .frame(maxWidth: .infinity, alignment: .topTrailing)
-                                }
-                                .padding(.horizontal)
-                            }
-                            .offset(y: reader.frame(in: .global).origin.y < 0 ? abs(reader.frame(in: .global).origin.y) : -reader.frame(in: .global).origin.y)
-                            
-                            Spacer()
-                        }
-                        
-                    }
                 }
+            } contents: {
+                VStack(alignment: .leading) {
+                    Text(article.description)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    Text(article.author)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.vertical)
+                }
+                .padding(.horizontal)
             }
             
             Button {
@@ -68,27 +53,12 @@ struct DetailView: View {
             } label: {
                 Image(systemName: "x.circle.fill")
                     .resizable()
-                    .frame(width: 30, height: 30)
+                    .frame(width: 25, height: 25)
                     .foregroundColor(.primary)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
             .padding()
         }
-    }
-    
-    func calculateHederHeight(minHeight: CGFloat, maxHeight: CGFloat, verticalOffset: CGFloat) -> CGFloat {
-        /// The verticalOffset is a negative number while scrolling up
-        
-        if maxHeight + verticalOffset < minHeight {
-            /// The user is scrolling up, if it reaches the minHeight it stops
-            return minHeight
-        } else if maxHeight + verticalOffset > maxHeight {
-            /// It dampens the offset the further down the user goes
-            return maxHeight + (verticalOffset * 0.5)
-        }
-        
-        /// The user is scrolling down
-        return maxHeight + verticalOffset
     }
 }
 
