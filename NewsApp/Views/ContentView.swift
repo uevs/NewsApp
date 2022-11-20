@@ -12,18 +12,26 @@ struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        
-        StickyHeaderScrollView(image: {
-            Image("placeholder")
-                .resizable()
-                .scaledToFill()
-        }, contents: {
-            LazyVStack {
-                ForEach(data.news) { article in
-                    NewsCard(article: article)
-                }
+        ZStack {
+            if colorScheme == .dark {
+                Color.black
+            } else {
+                Color(UIColor.systemGray6)
             }
-        }, maxHeight: 150)
+            
+            StickyHeaderScrollView(image: {
+                Image(colorScheme == .dark ? "header_d" : "header_l")
+                    .resizable()
+                    .scaledToFill()
+            }, contents: {
+                LazyVStack {
+                    ForEach(data.news) { article in
+                        NewsCard(article: article)
+                    }
+                }
+            }, maxHeight: 170)
+        }
+
     }
 }
 

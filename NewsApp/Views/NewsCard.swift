@@ -39,7 +39,6 @@ struct NewsCard: View {
             }
             .padding()
         }
-        .shadow(color: .gray.opacity(colorScheme == .dark ? 0 : 0.5), radius: 20)
         .padding([.top,.horizontal])
         .frame(maxWidth: .infinity, maxHeight: 150)
         .onTapGesture {
