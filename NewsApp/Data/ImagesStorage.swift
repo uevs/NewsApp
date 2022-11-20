@@ -67,5 +67,4 @@ class ImagesStorage {
         }
         return folderURL.appendingPathComponent(imageName + ".png")
     }
-    
 }

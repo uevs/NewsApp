@@ -115,7 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				6F0926B32926383B005B8931 /* NewsAppApp.swift */,
-				6F0926F6292AA4BC005B8931 /* Networking */,
+				6F0926F6292AA4BC005B8931 /* Data */,
 				6F0926E7292650BD005B8931 /* Model */,
 				6F0926E9292650EB005B8931 /* ViewModel */,
 				6F0926E8292650CB005B8931 /* Views */,
@@ -186,7 +186,7 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-		6F0926F6292AA4BC005B8931 /* Networking */ = {
+		6F0926F6292AA4BC005B8931 /* Data */ = {
 			isa = PBXGroup;
 			children = (
 				6F0926E129265079005B8931 /* NetworkManager.swift */,
@@ -194,7 +194,7 @@
 				6F0926F2292A4E9D005B8931 /* ImageLoader.swift */,
 				6F0926F4292A9DCA005B8931 /* ImageCache.swift */,
 			);
-			path = Networking;
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

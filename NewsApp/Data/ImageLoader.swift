@@ -77,6 +77,4 @@ class ImageLoader: ObservableObject {
             ImageCache.shared.cache.setObject(image!, forKey: self.url as NSURL)
         }
     }
-    
- 
 }

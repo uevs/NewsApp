@@ -16,5 +16,4 @@ class ImageCache {
         cache.countLimit = 100
         cache.totalCostLimit = 1024 * 1024 * 100
     }
-
 }
