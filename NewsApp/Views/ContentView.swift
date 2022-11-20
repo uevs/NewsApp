@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var data: DataStore
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         

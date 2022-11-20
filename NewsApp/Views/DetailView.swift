@@ -21,7 +21,7 @@ struct DetailView: View {
             }, title: {
                 ZStack(alignment:.top) {
                     Rectangle()
-                        .fill(LinearGradient(colors: [.white,.white,.clear], startPoint: .top, endPoint: .bottom))
+                        .fill(LinearGradient(colors: [Color(UIColor.systemBackground), Color(UIColor.systemBackground),.clear], startPoint: .top, endPoint: .bottom))
                         .frame(height: 90)
                     
                     VStack {

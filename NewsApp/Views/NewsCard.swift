@@ -10,6 +10,8 @@ import SwiftUI
 struct NewsCard: View {
     
     @EnvironmentObject var data: DataStore
+    @Environment(\.colorScheme) var colorScheme
+
     
     @State var article: News
     @State var showDetail: Bool = false
@@ -17,7 +19,7 @@ struct NewsCard: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
-                .foregroundColor(.red)
+                .foregroundColor(colorScheme == .dark ? Color(UIColor(red: 0.09, green: 0.09, blue: 0.09, alpha: 1.00)) : Color.white)
             
             HStack(alignment: .top) {
                 AsyncImageView(url: article.imageURL, id: article.id, placeholder: {
@@ -37,7 +39,7 @@ struct NewsCard: View {
             }
             .padding()
         }
-        .shadow(color: .gray.opacity(0.5), radius: 20)
+        .shadow(color: .gray.opacity(colorScheme == .dark ? 0 : 0.5), radius: 20)
         .padding([.top,.horizontal])
         .frame(maxWidth: .infinity, maxHeight: 150)
         .onTapGesture {
