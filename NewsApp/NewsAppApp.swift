@@ -10,11 +10,13 @@ import SwiftUI
 @main
 struct NewsAppApp: App {
     @StateObject var data: DataStore = DataStore()
+    @StateObject var animations: AnimationManager = AnimationManager()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(data)
+                .environmentObject(animations)
         }
     }
 }

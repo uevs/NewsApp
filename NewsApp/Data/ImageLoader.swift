@@ -30,13 +30,11 @@ class ImageLoader: ObservableObject {
     private func load() {
         
         if let cachedImage = ImageCache.shared.cache.object(forKey: self.url as NSURL) {
-            print("found cached image")
             self.image = cachedImage
             return
         }
         
         if let storedImage = ImagesStorage.shared.getImage(imageName: String(id)) {
-            print("found stored image")
             self.image = storedImage
             cacheImage(storedImage)
             return

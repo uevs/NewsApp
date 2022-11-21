@@ -14,7 +14,7 @@
 		6F0926C52926383C005B8931 /* NewsAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926C42926383C005B8931 /* NewsAppTests.swift */; };
 		6F0926CF2926383C005B8931 /* NewsAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926CE2926383C005B8931 /* NewsAppUITests.swift */; };
 		6F0926D12926383C005B8931 /* NewsAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926D02926383C005B8931 /* NewsAppUITestsLaunchTests.swift */; };
-		6F0926DE29264266005B8931 /* NewsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926DD29264266005B8931 /* NewsCard.swift */; };
+		6F0926DE29264266005B8931 /* NewsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926DD29264266005B8931 /* NewsCardView.swift */; };
 		6F0926E0292642D7005B8931 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926DF292642D7005B8931 /* DetailView.swift */; };
 		6F0926E229265079005B8931 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926E129265079005B8931 /* NetworkManager.swift */; };
 		6F0926E42926509C005B8931 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926E32926509C005B8931 /* DataStore.swift */; };
@@ -24,6 +24,8 @@
 		6F0926F3292A4E9D005B8931 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926F2292A4E9D005B8931 /* ImageLoader.swift */; };
 		6F0926F5292A9DCA005B8931 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926F4292A9DCA005B8931 /* ImageCache.swift */; };
 		6F0926F8292AA501005B8931 /* ImagesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926F7292AA501005B8931 /* ImagesStorage.swift */; };
+		6F0926FA292BD4BB005B8931 /* AnimationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926F9292BD4BB005B8931 /* AnimationsManager.swift */; };
+		6F0926FC292C3301005B8931 /* ExpandableNewsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926FB292C3301005B8931 /* ExpandableNewsCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +56,7 @@
 		6F0926CA2926383C005B8931 /* NewsAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewsAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F0926CE2926383C005B8931 /* NewsAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAppUITests.swift; sourceTree = "<group>"; };
 		6F0926D02926383C005B8931 /* NewsAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		6F0926DD29264266005B8931 /* NewsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCard.swift; sourceTree = "<group>"; };
+		6F0926DD29264266005B8931 /* NewsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCardView.swift; sourceTree = "<group>"; };
 		6F0926DF292642D7005B8931 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		6F0926E129265079005B8931 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		6F0926E32926509C005B8931 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
@@ -64,6 +66,8 @@
 		6F0926F2292A4E9D005B8931 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		6F0926F4292A9DCA005B8931 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		6F0926F7292AA501005B8931 /* ImagesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesStorage.swift; sourceTree = "<group>"; };
+		6F0926F9292BD4BB005B8931 /* AnimationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsManager.swift; sourceTree = "<group>"; };
+		6F0926FB292C3301005B8931 /* ExpandableNewsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableNewsCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,7 +168,6 @@
 				6F0926ED2929B1C7005B8931 /* Components */,
 				6F0926B52926383B005B8931 /* ContentView.swift */,
 				6F0926DF292642D7005B8931 /* DetailView.swift */,
-				6F0926DD29264266005B8931 /* NewsCard.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				6F0926E32926509C005B8931 /* DataStore.swift */,
+				6F0926F9292BD4BB005B8931 /* AnimationsManager.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -182,6 +186,8 @@
 			children = (
 				6F0926F0292A404D005B8931 /* AsyncImageView.swift */,
 				6F0926EE2929B1EB005B8931 /* StickyHeaderScrollView.swift */,
+				6F0926DD29264266005B8931 /* NewsCardView.swift */,
+				6F0926FB292C3301005B8931 /* ExpandableNewsCardView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -329,12 +335,14 @@
 			files = (
 				6F0926F5292A9DCA005B8931 /* ImageCache.swift in Sources */,
 				6F0926E6292650BA005B8931 /* Model.swift in Sources */,
-				6F0926DE29264266005B8931 /* NewsCard.swift in Sources */,
+				6F0926DE29264266005B8931 /* NewsCardView.swift in Sources */,
+				6F0926FC292C3301005B8931 /* ExpandableNewsCardView.swift in Sources */,
 				6F0926F8292AA501005B8931 /* ImagesStorage.swift in Sources */,
 				6F0926F3292A4E9D005B8931 /* ImageLoader.swift in Sources */,
 				6F0926E42926509C005B8931 /* DataStore.swift in Sources */,
 				6F0926E0292642D7005B8931 /* DetailView.swift in Sources */,
 				6F0926EF2929B1EB005B8931 /* StickyHeaderScrollView.swift in Sources */,
+				6F0926FA292BD4BB005B8931 /* AnimationsManager.swift in Sources */,
 				6F0926E229265079005B8931 /* NetworkManager.swift in Sources */,
 				6F0926B62926383B005B8931 /* ContentView.swift in Sources */,
 				6F0926F1292A404D005B8931 /* AsyncImageView.swift in Sources */,
