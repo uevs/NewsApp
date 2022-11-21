@@ -12,15 +12,11 @@ import SwiftUI
 class ImageLoader: ObservableObject {
     
     @Published var image: UIImage? = nil
-    
-//    private(set) var isLoading = false
-    
+        
     private let url: URL
     private let id: Int
     private var cancellable: AnyCancellable?
-    
-//    private static let imageProcessingQueue = DispatchQueue(label: "image-processing")
-    
+        
     init(url: URL, id: Int) {
         self.url = url
         self.id = id

@@ -14,14 +14,24 @@ struct DetailView: View {
     
     var body: some View {
         ZStack {
+            Color("LightDark")
+                .ignoresSafeArea()
             StickyHeaderScrollView(image: {
-                Image("placeholder")
-                    .resizable()
-                    .scaledToFill()
+                AsyncImageView(url: article.imageURL, id: article.id) {
+                    ZStack(alignment: .center) {
+                        Color(UIColor.systemBackground)
+                        
+                        Text("⏳ Loading the image")
+                            .font(.title3)
+                            .fontWeight(.black)
+                            .offset(y: 40)
+                    }
+                }
+                .scaledToFill()
             }, title: {
                 ZStack(alignment:.top) {
                     Rectangle()
-                        .fill(LinearGradient(colors: [Color(UIColor.systemBackground), Color(UIColor.systemBackground),.clear], startPoint: .top, endPoint: .bottom))
+                        .fill(LinearGradient(colors: [Color("LightDark"), Color("LightDark"),.clear], startPoint: .top, endPoint: .bottom))
                         .frame(height: 90)
                     
                     VStack {

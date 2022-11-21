@@ -24,15 +24,11 @@ struct AsyncImageView<Placeholder: View>: View {
     }
 
     var body: some View {
-        
         if imageLoader.image == nil {
             placeholder
         } else {
             Image(uiImage: imageLoader.image!)
                 .resizable()
-                .aspectRatio(contentMode: .fill)
-                .clipShape(Circle())
-                .frame(width: 50, height: 50)
         }
     }
 }

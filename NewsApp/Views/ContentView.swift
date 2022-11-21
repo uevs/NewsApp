@@ -13,16 +13,16 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            if colorScheme == .dark {
-                Color.black
-            } else {
-                Color(UIColor.systemGray6)
-            }
+            Color(UIColor.systemBackground)
+                .ignoresSafeArea()
             
             StickyHeaderScrollView(image: {
-                Image(colorScheme == .dark ? "header_d" : "header_l")
-                    .resizable()
-                    .scaledToFill()
+                ZStack {
+                    Color("LightDark")
+                    Image(colorScheme == .dark ? "header_d" : "header_l")
+                        .resizable()
+                        .scaledToFill()
+                }
             }, contents: {
                 LazyVStack {
                     ForEach(data.news) { article in
@@ -31,7 +31,7 @@ struct ContentView: View {
                 }
             }, maxHeight: 170)
         }
-
+        
     }
 }
 

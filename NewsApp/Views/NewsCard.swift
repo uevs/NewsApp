@@ -10,8 +10,6 @@ import SwiftUI
 struct NewsCard: View {
     
     @EnvironmentObject var data: DataStore
-    @Environment(\.colorScheme) var colorScheme
-
     
     @State var article: News
     @State var showDetail: Bool = false
@@ -19,12 +17,20 @@ struct NewsCard: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
-                .foregroundColor(colorScheme == .dark ? Color(UIColor(red: 0.09, green: 0.09, blue: 0.09, alpha: 1.00)) : Color.white)
+                .foregroundColor(Color("LightDark"))
             
             HStack(alignment: .top) {
                 AsyncImageView(url: article.imageURL, id: article.id, placeholder: {
-                    Image(systemName: "square")
+                    Image(systemName: "wifi.exclamationmark")
+                        .resizable()
+                        .foregroundColor(.red)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 40, height: 40)
                 })
+
+                .aspectRatio(contentMode: .fill)
+                .clipShape(Circle())
+                .frame(width: 50, height: 50)
 
                 
                 VStack(alignment: .leading) {
