@@ -64,7 +64,7 @@ struct DetailView: View {
                 Image(systemName: "x.circle.fill")
                     .resizable()
                     .frame(width: 25, height: 25)
-                    .foregroundColor(.primary)
+                    .foregroundColor(Color("LightDark"))
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
             .padding()
