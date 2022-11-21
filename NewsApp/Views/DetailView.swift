@@ -61,10 +61,15 @@ struct DetailView: View {
             Button {
                 dismiss.wrappedValue.dismiss()
             } label: {
-                Image(systemName: "x.circle.fill")
-                    .resizable()
-                    .frame(width: 25, height: 25)
-                    .foregroundColor(Color("LightDark"))
+                ZStack {
+                    Circle()
+                        .foregroundColor(Color.primary)
+                        .frame(width: 23, height: 23)
+                    Image(systemName: "x.circle.fill")
+                        .resizable()
+                        .frame(width: 25, height: 25)
+                        .foregroundColor(Color("LightDark"))
+                }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
             .padding()
