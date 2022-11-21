@@ -13,7 +13,7 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            Color(UIColor.systemBackground)
+            Color("LightDarkBG")
                 .ignoresSafeArea()
             
             StickyHeaderScrollView(image: {

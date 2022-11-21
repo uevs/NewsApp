@@ -19,7 +19,7 @@ struct DetailView: View {
             StickyHeaderScrollView(image: {
                 AsyncImageView(url: article.imageURL, id: article.id) {
                     ZStack(alignment: .center) {
-                        Color(UIColor.systemBackground)
+                        Color("LightDarkBG")
                         
                         Text("⏳ Loading the image")
                             .font(.title3)
