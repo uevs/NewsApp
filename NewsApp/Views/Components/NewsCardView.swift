@@ -17,7 +17,7 @@ struct NewsCardView: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
-                .foregroundColor(Color("LightDark"))
+                .foregroundColor(Color(UIColor.secondarySystemGroupedBackground))
             
             HStack(alignment: .top) {
                 AsyncImageView(url: article.imageURL, id: article.id, placeholder: {

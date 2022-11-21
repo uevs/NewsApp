@@ -9,27 +9,36 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var data: DataStore
+    @EnvironmentObject var animations: AnimationManager
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         ZStack {
-            Color("LightDarkBG")
+            Color(UIColor.systemGroupedBackground)
                 .ignoresSafeArea()
             
-            StickyHeaderScrollView(image: {
-                ZStack {
-                    Color("LightDark")
-                    Image(colorScheme == .dark ? "header_d" : "header_l")
-                        .resizable()
-                        .scaledToFill()
-                }
-            }, contents: {
-                LazyVStack {
-                    ForEach(data.news) { article in
-                        NewsCard(article: article)
+            ScrollViewReader { scrollReader in
+                    StickyHeaderScrollView(image: {
+                    ZStack {
+                        Color(UIColor.secondarySystemGroupedBackground)
+                        Image(colorScheme == .dark ? "header_d" : "header_l")
+                            .resizable()
+                            .scaledToFill()
                     }
-                }
-            }, maxHeight: 170)
+                    .opacity(animations.isExpanded ? 0 : 1)
+                }, contents: {
+                    VStack {
+                        ForEach(data.news) { article in
+                            NewsCardView(article: article)
+                        }
+                    }
+                    .onChange(of: animations.isExpanded, perform: { newValue in
+                        withAnimation {
+                            scrollReader.scrollTo(animations.id, anchor: .center)
+                        }
+                    })
+                }, maxHeight: 170)
+            }
         }
         
     }

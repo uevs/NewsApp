@@ -14,12 +14,12 @@ struct DetailView: View {
     
     var body: some View {
         ZStack {
-            Color("LightDark")
+            Color(UIColor.secondarySystemGroupedBackground)
                 .ignoresSafeArea()
             StickyHeaderScrollView(image: {
                 AsyncImageView(url: article.imageURL, id: article.id) {
                     ZStack(alignment: .center) {
-                        Color("LightDarkBG")
+                        Color(UIColor.systemGroupedBackground)
                         
                         Text("⏳ Loading the image")
                             .font(.title3)
@@ -31,7 +31,7 @@ struct DetailView: View {
             }, title: {
                 ZStack(alignment:.top) {
                     Rectangle()
-                        .fill(LinearGradient(colors: [Color("LightDark"), Color("LightDark"),.clear], startPoint: .top, endPoint: .bottom))
+                        .fill(LinearGradient(colors: [Color(UIColor.secondarySystemGroupedBackground), Color(UIColor.secondarySystemGroupedBackground),.clear], startPoint: .top, endPoint: .bottom))
                         .frame(height: 90)
                     
                     VStack {
@@ -68,7 +68,7 @@ struct DetailView: View {
                     Image(systemName: "x.circle.fill")
                         .resizable()
                         .frame(width: 25, height: 25)
-                        .foregroundColor(Color("LightDark"))
+                        .foregroundColor(Color(UIColor.secondarySystemGroupedBackground))
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
