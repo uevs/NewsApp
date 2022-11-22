@@ -9,13 +9,13 @@ import SwiftUI
 
 struct AsyncImageView<Placeholder: View>: View {
     @EnvironmentObject var data: DataStore
-    
+
     @StateObject private var imageLoader: ImageLoader
-    
+
     let url: URL
     let id: Int
     let placeholder: Placeholder
-        
+
     init(url: URL, id: Int, @ViewBuilder placeholder: () -> Placeholder) {
         self.url = url
         self.id = id

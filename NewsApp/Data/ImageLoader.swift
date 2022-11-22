@@ -10,36 +10,36 @@ import Combine
 import SwiftUI
 
 class ImageLoader: ObservableObject {
-    
-    @Published var image: UIImage? = nil
-        
+
+    @Published var image: UIImage?
+
     private let url: URL
     private let id: Int
     private var cancellable: AnyCancellable?
-        
+
     init(url: URL, id: Int) {
         self.url = url
         self.id = id
         load()
     }
-    
+
     deinit {
         cancellable?.cancel()
     }
-    
+
     private func load() {
-        
+
         if let cachedImage = ImageCache.shared.cache.object(forKey: self.url as NSURL) {
             self.image = cachedImage
             return
         }
-        
+
         if let storedImage = ImagesStorage.shared.getImage(imageName: String(id)) {
             self.image = storedImage
             cacheImage(storedImage)
             return
         }
-        
+
         cancellable = NetworkManager.getData(url: url)
             .tryMap({ (data) -> UIImage? in
                 return UIImage(data: data)
@@ -58,14 +58,13 @@ class ImageLoader: ObservableObject {
                 self?.image = image
             })
     }
-    
+
     private func saveImage(_ image: UIImage?) {
         if image != nil {
             ImagesStorage.shared.saveImage(image: image!, imageName: String(id))
         }
     }
-    
-    
+
     private func cacheImage(_ image: UIImage?) {
         if image != nil {
             ImageCache.shared.cache.setObject(image!, forKey: self.url as NSURL)

@@ -11,12 +11,12 @@ struct ContentView: View {
     @EnvironmentObject var data: DataStore
     @EnvironmentObject var animations: AnimationStates
     @Environment(\.colorScheme) var colorScheme
-    
+
     var body: some View {
         ZStack {
             Color(UIColor.systemGroupedBackground)
                 .ignoresSafeArea()
-            
+
             ScrollViewReader { scrollReader in
                     StickyHeaderScrollView(image: {
                     ZStack {
@@ -26,7 +26,7 @@ struct ContentView: View {
                             .scaledToFill()
                     }
                     .offset(y: animations.isExpanded ? -500 : 0)
-                        
+
                 }, contents: {
                     LazyVStack {
                         ForEach(data.news) { article in
@@ -34,21 +34,21 @@ struct ContentView: View {
                         }
                     }
                     .padding(.top, 30)
-                    .onChange(of: animations.isExpanded, perform: { newValue in
+                    .onChange(of: animations.isExpanded, perform: { _ in
                         withAnimation {
                             scrollReader.scrollTo(data.currentArticle.id, anchor: .center)
                         }
                     })
-                    
+
                 }, maxHeight: 170)
                     .ignoresSafeArea()
             }
-            
+
             if animations.showDetail {
                 DetailView()
                     .ignoresSafeArea()
             }
         }
-        
+
     }
 }

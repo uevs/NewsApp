@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct NewsCard: View {
-    
+
     @EnvironmentObject var data: DataStore
-    
+
     @State var article: News
     @State var showDetail: Bool = false
-    
+
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
                 .foregroundColor(Color("LightDark"))
-            
+
             HStack(alignment: .top) {
                 AsyncImageView(url: article.imageURL, id: article.id, placeholder: {
                     Image(systemName: "wifi.exclamationmark")
@@ -32,11 +32,10 @@ struct NewsCard: View {
                 .clipShape(Circle())
                 .frame(width: 50, height: 50)
 
-                
                 VStack(alignment: .leading) {
                     Text(article.title)
                         .bold()
-                    
+
                     Text(article.description)
                         .lineLimit(2)
                         .truncationMode(.tail)
@@ -45,7 +44,7 @@ struct NewsCard: View {
             }
             .padding()
         }
-        .padding([.top,.horizontal])
+        .padding([.top, .horizontal])
         .frame(maxWidth: .infinity, maxHeight: 150)
         .onTapGesture {
             showDetail.toggle()
@@ -56,8 +55,8 @@ struct NewsCard: View {
     }
 }
 
-//struct NewsCard_Previews: PreviewProvider {
+// struct NewsCard_Previews: PreviewProvider {
 //    static var previews: some View {
 //        NewsCard()
 //    }
-//}
+// }

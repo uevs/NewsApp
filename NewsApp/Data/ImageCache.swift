@@ -8,10 +8,10 @@
 import SwiftUI
 
 class ImageCache {
-    
+
     static var shared = ImageCache()
     var cache = NSCache<NSURL, UIImage>()
-    
+
     init() {
         cache.countLimit = 100
         cache.totalCostLimit = 1024 * 1024 * 100

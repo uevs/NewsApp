@@ -11,7 +11,7 @@ import SwiftUI
 struct NewsAppApp: App {
     @StateObject var data: DataStore = DataStore()
     @StateObject var animations: AnimationStates = AnimationStates()
-    
+
     var body: some Scene {
         WindowGroup {
             ContentView()

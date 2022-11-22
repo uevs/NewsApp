@@ -10,17 +10,17 @@ import SwiftUI
 struct DetailView: View {
     @EnvironmentObject var animations: AnimationStates
     @EnvironmentObject var data: DataStore
-        
+
     var body: some View {
         ZStack {
             Color(UIColor.secondarySystemGroupedBackground)
                 .ignoresSafeArea()
-           
+
             StickyHeaderScrollView(image: {
                 AsyncImageView(url: data.currentArticle.imageURL, id: data.currentArticle.id) {
                     ZStack(alignment: .center) {
                         Color(UIColor.systemGroupedBackground)
-                        
+
                         Text("⏳ Loading the image")
                             .font(.title3)
                             .fontWeight(.black)
@@ -29,17 +29,17 @@ struct DetailView: View {
                 }
                 .scaledToFill()
             }, title: {
-                ZStack(alignment:.top) {
+                ZStack(alignment: .top) {
                     Rectangle()
-                        .fill(LinearGradient(colors: [Color(UIColor.secondarySystemGroupedBackground), Color(UIColor.secondarySystemGroupedBackground),.clear], startPoint: .top, endPoint: .bottom))
+                        .fill(LinearGradient(colors: [Color(UIColor.secondarySystemGroupedBackground), Color(UIColor.secondarySystemGroupedBackground), .clear], startPoint: .top, endPoint: .bottom))
                         .frame(height: 90)
-                    
+
                     VStack {
                         Text(data.currentArticle.title)
                             .font(.title2)
                             .frame(maxWidth: .infinity, alignment: .topLeading)
                             .padding(.top, 5)
-                        
+
                         Text(data.currentArticle.formattedDate)
                             .foregroundColor(.secondary)
                             .frame(maxWidth: .infinity, alignment: .topTrailing)
@@ -50,14 +50,14 @@ struct DetailView: View {
                 VStack(alignment: .leading) {
                     Text(data.currentArticle.description)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    
+
                     Text(data.currentArticle.author)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.vertical)
                 }
                 .padding(.horizontal)
             }, maxHeight: 250)
-            
+
             Button {
                 withAnimation {
                     animations.showDetail = false
