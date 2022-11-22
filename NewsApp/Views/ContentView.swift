@@ -35,7 +35,7 @@ struct ContentView: View {
                     }
                     .padding(.top, 30)
                     .onChange(of: animations.isExpanded, perform: { _ in
-                        withAnimation {
+                        withAnimation(.linear(duration: 0.2)) {
                             scrollReader.scrollTo(data.currentArticle.id, anchor: .center)
                         }
                     })

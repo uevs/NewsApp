@@ -22,9 +22,9 @@ struct StickyHeaderScrollView<Image: View, Title: View, Contents: View>: View {
 
     private var padding: CGFloat {
         if title is EmptyView {
-            return maxHeight - 30
+            return maxHeight - 20
         } else {
-            return maxHeight + 70
+            return maxHeight + 80
         }
     }
 
