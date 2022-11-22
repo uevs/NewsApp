@@ -12,6 +12,7 @@ import Combine
 class DataStore: ObservableObject {
     
     @Published private(set) var news: [News] = []
+    @Published var currentArticle: News = News(id: 0, title: "", description: "", release_date: "", author: "", image: "")
     
     private var userDefaults = UserDefaults.standard
     

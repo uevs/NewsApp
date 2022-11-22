@@ -9,6 +9,8 @@ import SwiftUI
 
 struct StickyHeaderScrollView<Image: View, Title: View, Contents: View>: View {
     
+    @EnvironmentObject var animations: AnimationStates
+    
     private let image: Image
     private let title: Title
     private let contents: Contents
@@ -82,9 +84,3 @@ struct StickyHeaderScrollView<Image: View, Title: View, Contents: View>: View {
         return maxHeight + verticalOffset
     }
 }
-
-//struct StickyHeaderView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        StickyHeaderScrollView()
-//    }
-//}

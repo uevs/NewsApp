@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct DetailView: View {
-    @Environment(\.presentationMode) var dismiss
-    
-    @Binding var article: News
-    
+    @EnvironmentObject var animations: AnimationStates
+    @EnvironmentObject var data: DataStore
+        
     var body: some View {
         ZStack {
             Color(UIColor.secondarySystemGroupedBackground)
                 .ignoresSafeArea()
+           
             StickyHeaderScrollView(image: {
-                AsyncImageView(url: article.imageURL, id: article.id) {
+                AsyncImageView(url: data.currentArticle.imageURL, id: data.currentArticle.id) {
                     ZStack(alignment: .center) {
                         Color(UIColor.systemGroupedBackground)
                         
@@ -35,12 +35,12 @@ struct DetailView: View {
                         .frame(height: 90)
                     
                     VStack {
-                        Text(article.title)
+                        Text(data.currentArticle.title)
                             .font(.title2)
                             .frame(maxWidth: .infinity, alignment: .topLeading)
                             .padding(.top, 5)
                         
-                        Text(article.formattedDate)
+                        Text(data.currentArticle.formattedDate)
                             .foregroundColor(.secondary)
                             .frame(maxWidth: .infinity, alignment: .topTrailing)
                     }
@@ -48,10 +48,10 @@ struct DetailView: View {
                 }
             }, contents: {
                 VStack(alignment: .leading) {
-                    Text(article.description)
+                    Text(data.currentArticle.description)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    Text(article.author)
+                    Text(data.currentArticle.author)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.vertical)
                 }
@@ -59,7 +59,9 @@ struct DetailView: View {
             }, maxHeight: 250)
             
             Button {
-                dismiss.wrappedValue.dismiss()
+                withAnimation {
+                    animations.showDetail = false
+                }
             } label: {
                 ZStack {
                     Circle()
@@ -72,13 +74,8 @@ struct DetailView: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+            .offset(y: 50)
             .padding()
         }
     }
 }
-
-//struct DetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DetailView(article: )
-//    }
-//}

@@ -32,9 +32,3 @@ struct AsyncImageView<Placeholder: View>: View {
         }
     }
 }
-
-//struct NetworkImageView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AsyncImageView()
-//    }
-//}

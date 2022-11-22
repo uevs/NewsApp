@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var data: DataStore
-    @EnvironmentObject var animations: AnimationManager
+    @EnvironmentObject var animations: AnimationStates
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
@@ -25,29 +25,30 @@ struct ContentView: View {
                             .resizable()
                             .scaledToFill()
                     }
-                    .opacity(animations.isExpanded ? 0 : 1)
+                    .offset(y: animations.isExpanded ? -500 : 0)
+                        
                 }, contents: {
-                    VStack {
+                    LazyVStack {
                         ForEach(data.news) { article in
-                            NewsCardView(article: article)
+                            ExpandableNewsCardView(article: article)
                         }
                     }
+                    .padding(.top, 30)
                     .onChange(of: animations.isExpanded, perform: { newValue in
                         withAnimation {
-                            scrollReader.scrollTo(animations.id, anchor: .center)
+                            scrollReader.scrollTo(data.currentArticle.id, anchor: .center)
                         }
                     })
+                    
                 }, maxHeight: 170)
+                    .ignoresSafeArea()
+            }
+            
+            if animations.showDetail {
+                DetailView()
+                    .ignoresSafeArea()
             }
         }
         
     }
 }
-
-
-
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView()
-//    }
-//}

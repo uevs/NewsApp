@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct NewsAppApp: App {
     @StateObject var data: DataStore = DataStore()
-    @StateObject var animations: AnimationManager = AnimationManager()
+    @StateObject var animations: AnimationStates = AnimationStates()
     
     var body: some Scene {
         WindowGroup {
