@@ -23,7 +23,7 @@ struct ExpandableNewsCardView: View {
                 .foregroundColor(Color(UIColor.secondarySystemGroupedBackground))
 
             if isCompact {
-                HStack(alignment: .top) {
+                HStack(alignment: .center) {
                     AsyncImageView(url: article.imageURL, id: article.id, placeholder: {
                         Image(systemName: "wifi.exclamationmark")
                             .resizable()
@@ -33,19 +33,24 @@ struct ExpandableNewsCardView: View {
                     })
                     .aspectRatio(contentMode: .fill)
                     .clipShape(Circle())
-                    .frame(width: 50, height: 50)
+                    .frame(width: 60, height: 60)
+                    .padding(.horizontal, 6)
 
                     VStack(alignment: .leading) {
                         Text(article.title)
-                            .bold()
+                            .font(.headline.weight(.medium))
 
                         Text(article.description)
+                            .font(.system(size: 15, weight: .light))
                             .lineLimit(2)
                             .truncationMode(.tail)
+                            .padding(.trailing)
                     }
+                    .frame(height: 100)
                     Spacer()
                 }
-                .padding()
+                .frame(height: 100)
+                .padding(6)
 
             }
             if isExpanding {
@@ -53,13 +58,13 @@ struct ExpandableNewsCardView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                     .padding([.top], animations.scaleEffect)
                     .padding(.horizontal, isCompact ? 0 : animations.scaleEffect)
-                    .frame(maxHeight: isExpanded ? .infinity : 140, alignment: .top)
+                    .frame(maxHeight: isExpanded ? .infinity : 110, alignment: .top)
             }
 
         }
         .id(article.id)
         .padding([.top, .horizontal], isExpanded ? 0 : 10)
-        .frame(maxWidth: .infinity, minHeight: isExpanded ? UIScreen.main.bounds.height : 150)
+        .frame(maxWidth: .infinity, minHeight: isExpanded ? UIScreen.main.bounds.height : 120, maxHeight: isExpanded ? .infinity : 120)
         .onTapGesture {
             data.currentArticle = article
             isExpanded ? nil : expand()

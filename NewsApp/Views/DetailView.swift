@@ -32,13 +32,12 @@ struct DetailView: View {
                 ZStack(alignment: .top) {
                     Rectangle()
                         .fill(LinearGradient(colors: [Color(UIColor.secondarySystemGroupedBackground), Color(UIColor.secondarySystemGroupedBackground), .clear], startPoint: .top, endPoint: .bottom))
-                        .frame(height: 90)
 
-                    VStack {
+                    VStack(spacing: 4) {
                         Text(data.currentArticle.title)
-                            .font(.title2)
+                            .font(.title.weight(.semibold))
                             .frame(maxWidth: .infinity, alignment: .topLeading)
-                            .padding(.top, 5)
+                            .padding(.top, 25)
 
                         Text(data.currentArticle.formattedDate)
                             .foregroundColor(.secondary)
@@ -46,12 +45,13 @@ struct DetailView: View {
                     }
                     .padding(.horizontal)
                 }
+                .frame(height: 140)
             }, contents: {
                 VStack(alignment: .leading) {
                     Text(data.currentArticle.description)
                         .frame(maxWidth: .infinity, alignment: .leading)
 
-                    Text(data.currentArticle.author)
+                    Text("**Author**: \(data.currentArticle.author)")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.vertical)
                 }

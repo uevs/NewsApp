@@ -24,6 +24,7 @@ struct ContentView: View {
                         Image(colorScheme == .dark ? "header_d" : "header_l")
                             .resizable()
                             .scaledToFill()
+                            .scaleEffect(0.9)
                     }
                     .offset(y: animations.isExpanded ? -500 : 0)
 
@@ -40,7 +41,7 @@ struct ContentView: View {
                         }
                     })
 
-                }, maxHeight: 170)
+                }, maxHeight: 150)
                     .ignoresSafeArea()
             }
 
