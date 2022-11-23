@@ -11,4 +11,5 @@ class AnimationStates: ObservableObject {
     @Published var isExpanded: Bool = false
     @Published var showDetail: Bool = false
     @Published var scaleEffect: Double = 10
+    @Published var opacity: Double = 1
 }

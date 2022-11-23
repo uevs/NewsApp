@@ -59,6 +59,7 @@ struct ExpandableNewsCardView: View {
                     .padding([.top], animations.scaleEffect)
                     .padding(.horizontal, isCompact ? 0 : animations.scaleEffect)
                     .frame(maxHeight: isExpanded ? .infinity : 110, alignment: .top)
+                    .opacity(animations.opacity)
             }
 
         }
@@ -78,6 +79,7 @@ struct ExpandableNewsCardView: View {
 
     func expand() {
         animations.isExpanded = true
+        animations.opacity = 1
         withAnimation(.linear(duration: 0.5)) {
             isCompact = false
             isExpanded = true
@@ -94,16 +96,17 @@ struct ExpandableNewsCardView: View {
     }
 
     func contract() {
-        withAnimation(.linear(duration: 0.2)) {
+        withAnimation(.linear(duration: 0.3)) {
+            animations.opacity = 0
+        }
+        withAnimation(.linear(duration: 0.3)) {
             isCompact = true
             animations.scaleEffect = 10
-
-        }
-        withAnimation(.linear(duration: 0.2)) {
             isExpanded = false
             animations.isExpanded = false
+
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
             withAnimation {
                 isExpanding = false
 
