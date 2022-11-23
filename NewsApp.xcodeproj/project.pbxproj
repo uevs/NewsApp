@@ -13,7 +13,6 @@
 		6F0926BB2926383C005B8931 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F0926BA2926383C005B8931 /* Preview Assets.xcassets */; };
 		6F0926C52926383C005B8931 /* NewsAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926C42926383C005B8931 /* NewsAppTests.swift */; };
 		6F0926CF2926383C005B8931 /* NewsAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926CE2926383C005B8931 /* NewsAppUITests.swift */; };
-		6F0926D12926383C005B8931 /* NewsAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926D02926383C005B8931 /* NewsAppUITestsLaunchTests.swift */; };
 		6F0926E0292642D7005B8931 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926DF292642D7005B8931 /* DetailView.swift */; };
 		6F0926E229265079005B8931 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926E129265079005B8931 /* NetworkManager.swift */; };
 		6F0926E42926509C005B8931 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926E32926509C005B8931 /* DataStore.swift */; };
@@ -54,7 +53,6 @@
 		6F0926C42926383C005B8931 /* NewsAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAppTests.swift; sourceTree = "<group>"; };
 		6F0926CA2926383C005B8931 /* NewsAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewsAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F0926CE2926383C005B8931 /* NewsAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAppUITests.swift; sourceTree = "<group>"; };
-		6F0926D02926383C005B8931 /* NewsAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		6F0926DF292642D7005B8931 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		6F0926E129265079005B8931 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		6F0926E32926509C005B8931 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
@@ -147,7 +145,6 @@
 			isa = PBXGroup;
 			children = (
 				6F0926CE2926383C005B8931 /* NewsAppUITests.swift */,
-				6F0926D02926383C005B8931 /* NewsAppUITestsLaunchTests.swift */,
 			);
 			path = NewsAppUITests;
 			sourceTree = "<group>";
@@ -359,7 +356,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F0926CF2926383C005B8931 /* NewsAppUITests.swift in Sources */,
-				6F0926D12926383C005B8931 /* NewsAppUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
