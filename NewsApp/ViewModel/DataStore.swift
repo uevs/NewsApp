@@ -9,11 +9,17 @@ import Foundation
 import SwiftUI
 import Combine
 
+/// Gets and stores News data from the API.
+///
 class DataStore: ObservableObject {
 
+    /// News data from the API is stored in this array at runtime.
     @Published private(set) var news: [News] = []
+
+    /// The article that the users has selected to be displayed in full detail.
     @Published var currentArticle: News = News(id: 0, title: "", description: "", release_date: "", author: "", image: "")
 
+    /// The News data is also stored on UserDefaults.
     private var userDefaults = UserDefaults.standard
 
     private var cancellables = Set<AnyCancellable>()
@@ -21,6 +27,7 @@ class DataStore: ObservableObject {
     private let apiDomain: String = "run.mocky.io"
     private let apiEndPoint: String = "/v3/de42e6d9-2d03-40e2-a426-8953c7c94fb8"
 
+    /// Returns the assembled URLComponents of the API endpoint.
     lazy private var newsUrlComponents: URLComponents = {
         var components = URLComponents()
         components.scheme = "https"
@@ -29,18 +36,23 @@ class DataStore: ObservableObject {
         return components
     }()
 
+    /// Unwraps the URL, there's no fallback since the URL is hardcoded.
     lazy private var newsUrl: URL = {
         guard let unwrappedUrl = newsUrlComponents.url else { fatalError("Wrong URL") }
         return unwrappedUrl
     }()
 
     init() {
+        ///  Loads the news from UserDefaults, if any, to ensure that the app always shows the latest fetched information when loaded.
         if userDefaults.object(forKey: "news") != nil {
             news = getStoredNews(userDefaults.object(forKey: "news") as! Data)
         }
+
+        /// Loads/updates the news from the internet.
         getNews()
     }
 
+    /// Gets News data from the internet and decodes it. Then it sorts it by date and stores it on memory and on UserDefaults.
     private func getNews() {
         NetworkManager.getData(url: newsUrl)
             .decode(type: [News].self, decoder: JSONDecoder())
@@ -65,11 +77,13 @@ class DataStore: ObservableObject {
             .store(in: &cancellables)
     }
 
+    /// Returns News data from the UserDefaults.
     private func getStoredNews(_ data: Data) -> [News] {
         guard let decodedNews = try? JSONDecoder().decode([News].self, from: data) else {return []}
         return decodedNews
     }
 
+    /// Saves News data to the UserDefaults.
     private func storeNews(_ news: [News]) {
         guard let encodedNews = try? JSONEncoder().encode(news) else {return}
         self.userDefaults.set(encodedNews, forKey: "news")

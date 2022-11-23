@@ -7,21 +7,28 @@
 
 import SwiftUI
 
+/// This card can expand on tap to show the details of the news.
+///
 struct ExpandableNewsCardView: View {
 
     @EnvironmentObject var data: DataStore
     @EnvironmentObject var animations: AnimationStates
 
     @State var article: News
-    @State var isExpanded = false
-    @State var isExpanding = false
-    @State var isCompact = true
+
+    /// Local animation states to manage the expansion of the card and to time animations correctly.
+    @State private var isExpanded: Bool = false
+    @State private var isExpanding: Bool = false
+    @State private var isCompact: Bool = true
+    @State private var scaleEffect: Double = 10
+    @State private var opacity: Double = 1
 
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
                 .foregroundColor(Color(UIColor.secondarySystemGroupedBackground))
 
+            /// The 'card' version of the view shown inside the ScrollView in a compact form.
             if isCompact {
                 HStack(alignment: .center) {
                     AsyncImageView(url: article.imageURL, id: article.id, placeholder: {
@@ -53,13 +60,15 @@ struct ExpandableNewsCardView: View {
                 .padding(6)
 
             }
+
+            /// The 'expanded' version of the card. This is not interactable and is loaded to make a smooth transitiona animation. The actual DetailView that the user can interact with is then loaded on ContentView
             if isExpanding {
                 DetailView()
                     .clipShape(RoundedRectangle(cornerRadius: 20))
-                    .padding([.top], animations.scaleEffect)
-                    .padding(.horizontal, isCompact ? 0 : animations.scaleEffect)
+                    .padding([.top], scaleEffect)
+                    .padding(.horizontal, isCompact ? 0 : scaleEffect)
                     .frame(maxHeight: isExpanded ? .infinity : 110, alignment: .top)
-                    .opacity(animations.opacity)
+                    .opacity(opacity)
             }
 
         }
@@ -67,19 +76,23 @@ struct ExpandableNewsCardView: View {
         .padding([.top, .horizontal], isExpanded ? 0 : 10)
         .frame(maxWidth: .infinity, minHeight: isExpanded ? UIScreen.main.bounds.height : 120, maxHeight: isExpanded ? .infinity : 120)
         .onTapGesture {
+            /// When tapped, it stores the selected article on the ViewModel and starts the expansion process.
             data.currentArticle = article
             isExpanded ? nil : expand()
         }
         .onChange(of: animations.showDetail, perform: { _ in
+            /// If the DetailView gets closed by the user, it starts the contraction process.
             if !animations.showDetail {
                 contract()
             }
         })
     }
 
-    func expand() {
-        animations.isExpanded = true
-        animations.opacity = 1
+    /// Expands the card
+    /// Animations and states are timed so they can happen in the right order to ensure a smooth animation
+    private func expand() {
+        animations.isExpanded = true /// Communicates to other views that a card is expanding
+        opacity = 1
         withAnimation(.linear(duration: 0.5)) {
             isCompact = false
             isExpanded = true
@@ -87,7 +100,7 @@ struct ExpandableNewsCardView: View {
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             withAnimation {
-                animations.scaleEffect = 0
+                scaleEffect = 0
             }
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -95,13 +108,15 @@ struct ExpandableNewsCardView: View {
         }
     }
 
-    func contract() {
+    /// Contracts the card
+    /// Animations and states are timed so they can happen in the right order to ensure a smooth animation
+    private func contract() {
         withAnimation(.linear(duration: 0.3)) {
-            animations.opacity = 0
+            opacity = 0
         }
         withAnimation(.linear(duration: 0.3)) {
             isCompact = true
-            animations.scaleEffect = 10
+            scaleEffect = 10
             isExpanded = false
             animations.isExpanded = false
 
@@ -109,7 +124,6 @@ struct ExpandableNewsCardView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
             withAnimation {
                 isExpanding = false
-
             }
         })
     }

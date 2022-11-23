@@ -7,19 +7,23 @@
 
 import SwiftUI
 
+/// A ScrollView with a sticky header and an optional field for a title that will also stick to the header withouth overlapping it.
+///
 struct StickyHeaderScrollView<Image: View, Title: View, Contents: View>: View {
 
     @EnvironmentObject var animations: AnimationStates
 
-    private let image: Image
-    private let title: Title
-    private let contents: Contents
+    private let image: Image /// The image that goes to the Header
+    private let title: Title /// The Title that sticks just beneath the Header
+    private let contents: Contents /// The contents of the ScrollView
 
+    /// maxHeight of the Header  is default to 200 and can be set when using the view. minHeight is relative to maxHeight.
     private var maxHeight: CGFloat
     private var minHeight: CGFloat {
         maxHeight/1.4
     }
 
+    /// The padding between the Header and the ScrollView contents.
     private var padding: CGFloat {
         if title is EmptyView {
             return maxHeight - 20
@@ -43,11 +47,11 @@ struct StickyHeaderScrollView<Image: View, Title: View, Contents: View>: View {
         ScrollView {
             ZStack {
 
-                // Body
+                /// The ScrollView Contents are going here.
                 contents
                     .padding(.top, padding)
 
-                // Header
+                /// The Sticky Header and optional Title.
                 GeometryReader { reader in
                     VStack(spacing: 0) {
                         image
@@ -65,18 +69,21 @@ struct StickyHeaderScrollView<Image: View, Title: View, Contents: View>: View {
         }
     }
 
+    /// Returns the height of the header based on the current scroll position.
     private func calculateHederHeight(minHeight: CGFloat, maxHeight: CGFloat, verticalOffset: CGFloat) -> CGFloat {
-        /// The verticalOffset is a negative number while scrolling up
 
+        /// The verticalOffset is a negative number while scrolling up.
         if maxHeight + verticalOffset < minHeight {
-            /// The user is scrolling up, if it reaches the minHeight it stops
+
+            /// The user is scrolling up, if it reaches the minHeight it stops.
             return minHeight
         } else if maxHeight + verticalOffset > maxHeight {
-            /// It dampens the offset the further down the user goes
+
+            /// It dampens the offset the further down the user goes.
             return maxHeight + (verticalOffset * 0.5)
         }
 
-        /// The user is scrolling down
+        /// The user is scrolling down.
         return maxHeight + verticalOffset
     }
 }

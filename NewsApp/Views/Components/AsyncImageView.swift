@@ -7,14 +7,16 @@
 
 import SwiftUI
 
+/// Loads an image from the internet and shows a placeholder while the image is still loading
+///
 struct AsyncImageView<Placeholder: View>: View {
     @EnvironmentObject var data: DataStore
 
     @StateObject private var imageLoader: ImageLoader
 
-    let url: URL
-    let id: Int
-    let placeholder: Placeholder
+    private let url: URL
+    private let id: Int
+    private let placeholder: Placeholder
 
     init(url: URL, id: Int, @ViewBuilder placeholder: () -> Placeholder) {
         self.url = url

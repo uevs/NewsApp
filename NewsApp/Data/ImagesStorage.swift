@@ -8,6 +8,9 @@
 import Foundation
 import SwiftUI
 
+/// Responsible for reading and writing images on local storage.
+/// Uses the documents folder to store images.
+///
 class ImagesStorage {
 
     static let shared = ImagesStorage()
@@ -17,6 +20,7 @@ class ImagesStorage {
         setup()
     }
 
+    /// If there is no 'images' folder, it creates one.
     private func setup() {
 
         guard let url = getFolderUrl() else { return }
@@ -28,6 +32,22 @@ class ImagesStorage {
                 print("Error creating directory: \(error)")
             }
         }
+    }
+
+    /// Gets the URL for the 'images' folder.
+    private func getFolderUrl() -> URL? {
+        guard let url = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+            return nil
+        }
+        return url.appendingPathComponent(folderName)
+    }
+
+    /// Gets the URL for the requested image.
+    private func getImageUrl(imageName: String) -> URL? {
+        guard let folderURL = getFolderUrl() else {
+            return nil
+        }
+        return folderURL.appendingPathComponent(imageName + ".png")
     }
 
     func saveImage(image: UIImage, imageName: String) {
@@ -48,19 +68,5 @@ class ImagesStorage {
         }
 
         return UIImage(contentsOfFile: url.path)
-    }
-
-    private func getFolderUrl() -> URL? {
-        guard let url = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
-            return nil
-        }
-        return url.appendingPathComponent(folderName)
-    }
-
-    private func getImageUrl(imageName: String) -> URL? {
-        guard let folderURL = getFolderUrl() else {
-            return nil
-        }
-        return folderURL.appendingPathComponent(imageName + ".png")
     }
 }

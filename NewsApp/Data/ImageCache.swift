@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+/// Cached images are managed thrugh this singleton containing an NSCache instance.
+/// 
 class ImageCache {
 
     static var shared = ImageCache()
@@ -14,6 +16,5 @@ class ImageCache {
 
     init() {
         cache.countLimit = 100
-        cache.totalCostLimit = 1024 * 1024 * 100
     }
 }

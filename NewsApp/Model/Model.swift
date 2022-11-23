@@ -7,6 +7,8 @@
 
 import Foundation
 
+/// The data model of the application.
+///
 struct News: Codable, Identifiable, Equatable {
 
     let id: Int
@@ -16,6 +18,7 @@ struct News: Codable, Identifiable, Equatable {
     let author: String
     let image: String
 
+    /// Returns the Date from the  'release_date' String.
     var date: Date {
         let formatter = DateFormatter()
         formatter.dateFormat = "M/d/yyyy"
@@ -27,12 +30,14 @@ struct News: Codable, Identifiable, Equatable {
         }
     }
 
+    /// Returns the Date in the required format.
     var formattedDate: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEE, MMM d, ''yy"
         return formatter.string(from: self.date).capitalized
     }
 
+    /// Returns the URL from the 'image' String.
     var imageURL: URL {
         let cleanedUrlString = String(image.dropFirst(7))
         var components = URLComponents()

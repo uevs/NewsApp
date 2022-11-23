@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+/// The main view of the app, conists mainly of a custom StickyHeaderScrollView
+///
 struct ContentView: View {
     @EnvironmentObject var data: DataStore
     @EnvironmentObject var animations: AnimationStates
@@ -45,6 +47,7 @@ struct ContentView: View {
                     .ignoresSafeArea()
             }
 
+            /// The DetailView gets loaded on top of the ScrollView to ensure there are no conflicts with the user interaction since it also contains a ScrollView.
             if animations.showDetail {
                 DetailView()
                     .ignoresSafeArea()

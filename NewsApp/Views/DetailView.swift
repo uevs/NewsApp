@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+/// The view containing the details on the selected article.
+/// 
 struct DetailView: View {
     @EnvironmentObject var animations: AnimationStates
     @EnvironmentObject var data: DataStore
