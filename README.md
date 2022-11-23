@@ -8,7 +8,7 @@
 
 </div>
 
-A **SwiftUIt** app that connects to a mock news API. The app uses Combine to handle networking and follows the MVVM pattern. 
+A **SwiftUI** app that connects to a mock news API. The app uses Combine to handle networking and follows the MVVM pattern. 
 
 Custom SwfitUI components implemented:
 * **StickyHeaderScrollView**: a ScrollView wth a sticky header along with an optional sticky title section.
@@ -33,4 +33,4 @@ https://user-images.githubusercontent.com/36189306/203604311-64e31499-7342-4a75-
 
 ## Available on TestFlight
 
-The app is available for download on TestFlight at [this link]().
+The app is available for download on TestFlight at [this link](https://testflight.apple.com/join/oOv5AQ1M).
