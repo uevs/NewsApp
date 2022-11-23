@@ -18,8 +18,9 @@ Custom SwfitUI components implemented:
 ## Animations Demo
 <div align="center">  
 
-https://user-images.githubusercontent.com/36189306/203602267-b3e5ae78-edcf-46cf-8f31-b4aca30ee565.mov
-  
+https://user-images.githubusercontent.com/36189306/203604311-64e31499-7342-4a75-a963-9b16f4b4feee.mov
+
+
 </div>
 
 
