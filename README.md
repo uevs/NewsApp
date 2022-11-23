@@ -14,15 +14,12 @@ Custom SwfitUI components implemented:
 * **StickyHeaderScrollView**: a ScrollView wth a sticky header along with an optional sticky title section.
 * **ExpandableNewsCardView**: an animated card that can expand to fullscreen, inspired by the cards on App Store.
 
-## Expandable Card
 
-<div align="center">
+## Animations Demo
+<div align="center">  
 
-</div>
-
-## Sticky Header
-<div align="center">
-
+https://user-images.githubusercontent.com/36189306/203602267-b3e5ae78-edcf-46cf-8f31-b4aca30ee565.mov
+  
 </div>
 
 
