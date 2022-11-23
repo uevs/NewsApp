@@ -24,13 +24,11 @@ https://user-images.githubusercontent.com/36189306/203604311-64e31499-7342-4a75-
 </div>
 
 
-## Dark Mode Support
+## Screenshots
 
 <div align="center">
 <img width="200" alt="screen1" src="https://user-images.githubusercontent.com/36189306/203595481-e13f9f82-06f7-448a-8080-54483c398538.png">
 <img width="200" alt="screen2" src="https://user-images.githubusercontent.com/36189306/203595499-e37ae536-9693-4f3f-9f0f-9158fb64b5d9.png">
-<img width="200" alt="screen3" src="https://user-images.githubusercontent.com/36189306/203595630-f70031ef-f388-49c1-88d3-b9bff13cc034.png">
-<img width="200" alt="screen4" src="https://user-images.githubusercontent.com/36189306/203595648-37cc7490-6790-4bb3-83d3-12b1bca7c278.png">
 </div>
 
 ## Available on TestFlight
