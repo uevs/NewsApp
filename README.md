@@ -13,6 +13,7 @@ A **SwiftUI** app that connects to a mock news API. The app uses Combine to hand
 Custom SwfitUI components implemented:
 * **StickyHeaderScrollView**: a ScrollView wth a sticky header along with an optional sticky title section.
 * **ExpandableNewsCardView**: an animated card that can expand to fullscreen, inspired by the cards on App Store.
+* **AsyncImageView**: a View that asyncronously loads an image, since the project targets iOS14 and the native component is not available.
 
 
 ## Animations Demo
