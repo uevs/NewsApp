@@ -28,7 +28,7 @@ struct StickyHeaderScrollView<Image: View, Title: View, Contents: View>: View {
         if title is EmptyView {
             return maxHeight - 20
         } else {
-            return maxHeight + 130
+            return maxHeight + 110
         }
     }
 

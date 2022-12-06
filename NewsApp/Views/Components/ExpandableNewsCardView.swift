@@ -18,7 +18,6 @@ struct ExpandableNewsCardView: View {
     
     /// Local animation states to manage the expansion of the card and to time animations correctly.
     @State private var isExpanded: Bool = false
-    @State private var isExpanding: Bool = false
     @State private var isCompact: Bool = true
     @State private var scaleEffect: Double = 10
     @State private var opacity: Double = 1
@@ -83,17 +82,16 @@ struct ExpandableNewsCardView: View {
         animations.isExpanded = true /// Communicates to other views that a card is expanding
         opacity = 0
         
-        withAnimation(.linear(duration: 0.5)) {
+        withAnimation(.linear(duration: 0.3)) {
             isCompact = false
             isExpanded = true
-            isExpanding = true
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             withAnimation {
                 scaleEffect = 0
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             animations.showDetail = true
         }
     }
@@ -110,9 +108,5 @@ struct ExpandableNewsCardView: View {
             isExpanded = false
             animations.isExpanded = false
         }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
-            isExpanding = false
-        })
     }
 }

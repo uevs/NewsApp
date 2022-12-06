@@ -39,12 +39,7 @@ struct News: Codable, Identifiable, Equatable {
 
     /// Returns the URL from the 'image' String.
     var imageURL: URL {
-        let cleanedUrlString = String(image.dropFirst(7))
-        var components = URLComponents()
-        components.path = cleanedUrlString
-        components.scheme = "https"
-
-        if let url: URL = components.url {
+        if let url: URL = URL(string: image) {
             return url
         } else {
             return URL(string: "https://dummyimage.com/600")!

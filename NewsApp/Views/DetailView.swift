@@ -56,6 +56,7 @@ struct DetailView: View {
                     Text("**Author**: \(data.currentArticle.author)")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.vertical)
+                    Spacer()
                 }
                 .padding(.horizontal)
             }, maxHeight: 250)
