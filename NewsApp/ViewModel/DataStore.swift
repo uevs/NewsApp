@@ -25,7 +25,7 @@ class DataStore: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
 
     private let apiDomain: String = "run.mocky.io"
-    private let apiEndPoint: String = "/v3/de42e6d9-2d03-40e2-a426-8953c7c94fb8"
+    private let apiEndPoint: String = "/v3/b3f31426-ce87-4353-8227-7edcf27c32f3"
 
     /// Returns the assembled URLComponents of the API endpoint.
     lazy private var newsUrlComponents: URLComponents = {

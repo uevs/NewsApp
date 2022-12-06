@@ -37,13 +37,13 @@ struct DetailView: View {
 
                     VStack(spacing: 4) {
                         Text(data.currentArticle.title)
-                            .font(.title.weight(.semibold))
+                            .font(.title2.weight(.semibold))
                             .frame(maxWidth: .infinity, alignment: .topLeading)
                             .padding(.top, 25)
 
                         Text(data.currentArticle.formattedDate)
                             .foregroundColor(.secondary)
-                            .frame(maxWidth: .infinity, alignment: .topTrailing)
+                            .frame(maxWidth: .infinity, alignment: .topLeading)
                     }
                     .padding(.horizontal)
                 }
@@ -69,7 +69,7 @@ struct DetailView: View {
                     Circle()
                         .foregroundColor(Color.primary)
                         .frame(width: 23, height: 23)
-                    Image(systemName: "x.circle.fill")
+                    Image(systemName: "xmark.circle.fill")
                         .resizable()
                         .frame(width: 25, height: 25)
                         .foregroundColor(Color(UIColor.secondarySystemGroupedBackground))
