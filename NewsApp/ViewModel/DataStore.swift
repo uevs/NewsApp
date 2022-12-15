@@ -18,6 +18,8 @@ class DataStore: ObservableObject {
 
     /// The article that the users has selected to be displayed in full detail.
     @Published var currentArticle: News = News(id: 0, title: "", description: "", release_date: "", author: "", image: "")
+    
+    private var networkManager: any NetworkLayer
 
     /// The News data is also stored on UserDefaults.
     private var userDefaults = UserDefaults.standard
@@ -42,7 +44,9 @@ class DataStore: ObservableObject {
         return unwrappedUrl
     }()
 
-    init() {
+    init(_ networkManager: some NetworkLayer) {
+        self.networkManager = networkManager
+        ///  Loads the news from UserDefaults, if any, to ensure that the app always shows the latest fetched information when loaded.
         ///  Loads the news from UserDefaults, if any, to ensure that the app always shows the latest fetched information when loaded.
         if userDefaults.object(forKey: "news") != nil {
             news = getStoredNews(userDefaults.object(forKey: "news") as! Data)
@@ -54,7 +58,7 @@ class DataStore: ObservableObject {
 
     /// Gets News data from the internet and decodes it. Then it sorts it by date and stores it on memory and on UserDefaults.
     private func getNews() {
-        NetworkManager.getData(url: newsUrl)
+        networkManager.getData(url: newsUrl)
             .decode(type: [News].self, decoder: JSONDecoder())
             .receive(on: DispatchQueue.main)
             .sink { (completion) in

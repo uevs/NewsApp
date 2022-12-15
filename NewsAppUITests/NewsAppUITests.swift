@@ -18,13 +18,12 @@ final class NewsAppUITests: XCTestCase {
 
         let app = XCUIApplication()
         app.launch()
-        app.scrollViews.otherElements.staticTexts["Fully-configurable zero tolerance budgetary management"].tap()
+        app.scrollViews.otherElements.staticTexts["Synergized leading edge interface"].tap()
+        app.scrollViews.firstMatch.swipeUp()
 
-        let author = app.scrollViews.otherElements.staticTexts["Author: dyakuntsov1d@mac.com"]
-        let date = app.scrollViews.otherElements.staticTexts["Tue, Mar 10, '20"]
+        let author = app.scrollViews.otherElements.staticTexts["Author: Inesita Poyser"]
 
         XCTAssertTrue(author.exists)
-        XCTAssertTrue(date.exists)
     }
 
     func testSwipeAndOpen() throws {
@@ -33,15 +32,12 @@ final class NewsAppUITests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
 
-        let elementsQuery = app.scrollViews.otherElements
-        elementsQuery.staticTexts["Fully-configurable zero tolerance budgetary management"].swipeUp()
-        elementsQuery.staticTexts["Optional mobile contingency"].tap()
-
-        let author = app.scrollViews.otherElements.staticTexts["Author: gleggis1a@rambler.ru"]
-        let date = app.scrollViews.otherElements.staticTexts["Fri, Oct 25, '19"]
+        app.scrollViews.firstMatch.swipeUp()
+        app.scrollViews.otherElements.staticTexts["Innovative impactful artificial intelligence"].tap()
+        app.scrollViews.firstMatch.swipeUp()
+        let author = app.scrollViews.otherElements.staticTexts["Author: Patten Witling"]
 
         XCTAssertTrue(author.exists)
-        XCTAssertTrue(date.exists)
     }
 
     func testCardOpenAndClose() throws {
@@ -50,12 +46,14 @@ final class NewsAppUITests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
 
-        app.scrollViews.otherElements.staticTexts["Inverse asynchronous projection"].tap()
-        app.windows.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .button)["x.circle.fill"].tap()
+        app.scrollViews.otherElements.staticTexts["Synergized leading edge interface"].tap()
+        app.buttons["Close"].tap()
 
-        let card = app.scrollViews.otherElements.staticTexts["Reactive well-modulated alliance"]
+        
+        app.scrollViews.firstMatch.swipeUp()
+
+        let card = app.scrollViews.otherElements.staticTexts["Innovative impactful artificial intelligence"]
 
         XCTAssertTrue(card.exists)
-
     }
 }

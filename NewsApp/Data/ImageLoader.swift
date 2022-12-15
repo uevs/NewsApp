@@ -19,10 +19,13 @@ class ImageLoader: ObservableObject {
     private let url: URL
     private let id: Int
     private var cancellable: AnyCancellable?
+    
+    private var networkManager: any NetworkLayer
 
-    init(url: URL, id: Int) {
+    init(url: URL, id: Int, networkManager: some NetworkLayer) {
         self.url = url
         self.id = id
+        self.networkManager = networkManager
         load()
     }
 
@@ -46,7 +49,7 @@ class ImageLoader: ObservableObject {
         }
 
         /// Gets the image from the internet.
-        cancellable = NetworkManager.getData(url: url)
+        cancellable = networkManager.getData(url: url)
             .tryMap({ (data) -> UIImage? in
                 return UIImage(data: data)
             })

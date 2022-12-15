@@ -14,7 +14,7 @@ class ImageCache {
     static var shared = ImageCache()
     var cache = NSCache<NSURL, UIImage>()
 
-    init() {
+    private init() {
         cache.countLimit = 100
     }
 }

@@ -24,6 +24,7 @@
 		6F0926F8292AA501005B8931 /* ImagesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926F7292AA501005B8931 /* ImagesStorage.swift */; };
 		6F0926FA292BD4BB005B8931 /* AnimationStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926F9292BD4BB005B8931 /* AnimationStates.swift */; };
 		6F0926FC292C3301005B8931 /* ExpandableNewsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0926FB292C3301005B8931 /* ExpandableNewsCardView.swift */; };
+		6F52CE95294B2E6900EAFCF5 /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F52CE94294B2E6800EAFCF5 /* NetworkLayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		6F0926F7292AA501005B8931 /* ImagesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesStorage.swift; sourceTree = "<group>"; };
 		6F0926F9292BD4BB005B8931 /* AnimationStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationStates.swift; sourceTree = "<group>"; };
 		6F0926FB292C3301005B8931 /* ExpandableNewsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableNewsCardView.swift; sourceTree = "<group>"; };
+		6F52CE94294B2E6800EAFCF5 /* NetworkLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				6F0926B32926383B005B8931 /* NewsAppApp.swift */,
+				6F52CE93294B2E5900EAFCF5 /* Protocols */,
 				6F0926F6292AA4BC005B8931 /* Data */,
 				6F0926E7292650BD005B8931 /* Model */,
 				6F0926E9292650EB005B8931 /* ViewModel */,
@@ -195,6 +198,14 @@
 				6F0926F7292AA501005B8931 /* ImagesStorage.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		6F52CE93294B2E5900EAFCF5 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				6F52CE94294B2E6800EAFCF5 /* NetworkLayer.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -327,6 +338,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F52CE95294B2E6900EAFCF5 /* NetworkLayer.swift in Sources */,
 				6F0926F5292A9DCA005B8931 /* ImageCache.swift in Sources */,
 				6F0926E6292650BA005B8931 /* Model.swift in Sources */,
 				6F0926FC292C3301005B8931 /* ExpandableNewsCardView.swift in Sources */,
