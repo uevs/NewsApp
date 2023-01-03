@@ -32,7 +32,3 @@ https://user-images.githubusercontent.com/36189306/207840835-e73022ce-497b-4b11-
 <img width="250" alt="app_l" src="https://user-images.githubusercontent.com/36189306/207839948-c74ab105-6022-4a7e-8873-87dde60c2910.png">
 <img width="250" alt="app_d" src="https://user-images.githubusercontent.com/36189306/207839969-d86e5995-7f44-453e-b533-307fa6a3a221.png">
 </div>
-
-## Available on TestFlight
-
-The app is available for download on TestFlight at [this link](https://testflight.apple.com/join/oOv5AQ1M).
