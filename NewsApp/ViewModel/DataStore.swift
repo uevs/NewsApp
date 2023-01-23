@@ -55,6 +55,11 @@ class DataStore: ObservableObject {
         /// Loads/updates the news from the internet.
         getNews()
     }
+    
+    /// Updates the current article with a new one.
+    func updateCurrentArticle(_ newArticle: News) {
+        currentArticle = newArticle
+    }
 
     /// Gets News data from the internet and decodes it. Then it sorts it by date and stores it on memory and on UserDefaults.
     private func getNews() {

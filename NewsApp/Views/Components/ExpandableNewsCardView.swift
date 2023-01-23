@@ -65,7 +65,7 @@ struct ExpandableNewsCardView: View {
         .frame(maxWidth: .infinity, minHeight: isExpanded ? screenHeight : cardHeight, maxHeight: isExpanded ? screenHeight : cardHeight)
         .onTapGesture {
             /// When tapped, it stores the selected article on the ViewModel and starts the expansion process.
-            data.currentArticle = article
+            data.updateCurrentArticle(article)
             isExpanded ? nil : expand()
         }
         .onChange(of: animations.showDetail, perform: { _ in
