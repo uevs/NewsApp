@@ -11,19 +11,12 @@ import SwiftUI
 /// Responsible for reading and writing images on local storage.
 /// Uses the documents folder to store images.
 ///
-class ImagesStorage {
+class ImagesStorage: PersistenceHandler {
 
-    static let shared = ImagesStorage()
-    private let folderName = "images"
-
-    init() {
-        setup()
-    }
-
-    /// If there is no 'images' folder, it creates one.
-    private func setup() {
-
-        guard let url = getFolderUrl() else { return }
+    /// If there is no 'folder', it creates one.
+    private func setup(folder: String) {
+        
+        guard let url = getFolderUrl(folder) else { return }
 
         if !FileManager.default.fileExists(atPath: url.path) {
             do {
@@ -35,24 +28,24 @@ class ImagesStorage {
     }
 
     /// Gets the URL for the 'images' folder.
-    private func getFolderUrl() -> URL? {
+    private func getFolderUrl(_ folder: String) -> URL? {
         guard let url = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
             return nil
         }
-        return url.appendingPathComponent(folderName)
+        return url.appendingPathComponent(folder)
     }
 
     /// Gets the URL for the requested image.
-    private func getImageUrl(imageName: String) -> URL? {
-        guard let folderURL = getFolderUrl() else {
+    private func getImageUrl(imageName: String, folder: String) -> URL? {
+        guard let folderURL = getFolderUrl(folder) else {
             return nil
         }
         return folderURL.appendingPathComponent(imageName + ".png")
     }
-
-    func saveImage(image: UIImage, imageName: String) {
-
-        guard let data = image.pngData(), let url = getImageUrl(imageName: imageName) else { return }
+    
+    func saveImage(image: UIImage, imageName: String, folder: String) {
+        setup(folder: folder)
+        guard let data = image.pngData(), let url = getImageUrl(imageName: imageName, folder: folder) else { return }
 
         do {
             try data.write(to: url)
@@ -61,9 +54,9 @@ class ImagesStorage {
         }
     }
 
-    func getImage(imageName: String) -> UIImage? {
-
-        guard let url = getImageUrl(imageName: imageName), FileManager.default.fileExists(atPath: url.path) else {
+    func getImage(imageName: String, folder: String) -> UIImage? {
+        setup(folder: folder)
+        guard let url = getImageUrl(imageName: imageName, folder: folder), FileManager.default.fileExists(atPath: url.path) else {
             return nil
         }
 

@@ -21,11 +21,13 @@ class ImageLoader: ObservableObject {
     private var cancellable: AnyCancellable?
     
     private var networkManager: any NetworkLayer
+    private var imageStorage: any PersistenceHandler
 
-    init(url: URL, id: Int, networkManager: some NetworkLayer) {
+    init(url: URL, id: Int, networkManager: some NetworkLayer, imageStorage: some PersistenceHandler) {
         self.url = url
         self.id = id
         self.networkManager = networkManager
+        self.imageStorage = imageStorage
         load()
     }
 
@@ -42,7 +44,7 @@ class ImageLoader: ObservableObject {
         }
 
         /// Checks if the image already exists in the local storage, if so it loads it and caches it.
-        if let storedImage = ImagesStorage.shared.getImage(imageName: String(id)) {
+        if let storedImage = imageStorage.getImage(imageName: String(id), folder: "images") {
             self.image = storedImage
             cacheImage(storedImage)
             return
@@ -71,7 +73,8 @@ class ImageLoader: ObservableObject {
     /// Saves the image to local storage.
     private func saveImage(_ image: UIImage?) {
         if image != nil {
-            ImagesStorage.shared.saveImage(image: image!, imageName: String(id))
+            imageStorage.saveImage(image: image!, imageName: String(id), folder: "images")
+            print("saving image stored image")
         }
     }
 

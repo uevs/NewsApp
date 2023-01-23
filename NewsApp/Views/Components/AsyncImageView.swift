@@ -22,7 +22,7 @@ struct AsyncImageView<Placeholder: View>: View {
         self.url = url
         self.id = id
         self.placeholder = placeholder()
-        _imageLoader = StateObject(wrappedValue: ImageLoader(url: url, id: id, networkManager: NetworkManager()))
+        _imageLoader = StateObject(wrappedValue: ImageLoader(url: url, id: id, networkManager: NetworkManager(), imageStorage: ImagesStorage()))
     }
 
     var body: some View {

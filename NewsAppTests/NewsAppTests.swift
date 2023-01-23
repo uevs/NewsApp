@@ -62,7 +62,7 @@ final class NewsAppTests: XCTestCase {
     func testImageLoader() throws {
         /// Tests if the ImageLoader publishes and image
 
-        let imageLoader = ImageLoader(url: URL(string: "https://dummyimage.com/367x809.png/ff4444/ffffff")!, id: 17, networkManager: NetworkManager())
+        let imageLoader = ImageLoader(url: URL(string: "https://dummyimage.com/367x809.png/ff4444/ffffff")!, id: 17, networkManager: NetworkManager(), imageStorage: ImagesStorage())
         let expectation = self.expectation(description: "received")
         var image: UIImage?
 
